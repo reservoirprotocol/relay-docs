@@ -64,7 +64,8 @@
         "how-it-works/relay-protocol",
         "how-it-works/the-reservoir-relayer",
         "how-it-works/swapping",
-        "how-it-works/fees"
+        "how-it-works/fees",
+        "how-it-works/surplus"
       ]
     },
     {
