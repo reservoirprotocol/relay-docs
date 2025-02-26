@@ -23,9 +23,10 @@ Gas fees are estimates and may fluctuate over time, if using in a calculation we
 
 App Fee(s) are specified while generating a quote. They accrue off-chain, meaning they are not paid out immediately and instead require the app fee payee to manually claim the fee later. 
 The fee is specified in bps (basis points) over the input value of the order. When specifying a fee, a claim address is also provided which can be used to withdraw fees. Multiple app fees can be specified for a single quote.
+You can accrue fees by including `appFees` in the [Quote API](https://docs.relay.link/references/api/get-quote).
+
 The accrual happening offchain means that we have a database table of the app fee payee address, the currency, and the amount of funds they have claim over for that currency.
-The app fee payee can claim their accrued fees on any chain that the payment currency exists on. So if they accrued USDC on 50 different chains, we consolidate this automatically when they proceed with claiming their balance.
-The app fee claim works by requesting a quote from originChainId=0, and following the steps to prove your ownership over the claim address by signing a signature and submitting it to us.
+
 
 App fees work differently for cross-chain and same-chain requests:
 
@@ -35,11 +36,13 @@ App fees work differently for cross-chain and same-chain requests:
 
 **Same-Chain:**
 - App fees can be applied to same-chain swaps only, not for wraps/unwraps/sends.
-- The app fee amount is added to the operation in the form of native currency. Even if the user is not spending native currency in the operation, so its possible for the user to swap from $MOG -> $MEME, and pay some extra ETH to the solver to pay the app fee.
-- NOTE: This app fee is required to be sent, if not, the tx will fail
+- The app fee amount is added to the operation in the form of native currency. Even if the user is not spending native currency in the operation, so its possible for the user to swap from `$MOG -> $MEME`, and pay some extra `ETH` to the solver to pay the app fee.
+- NOTE: This app fee is required to be sent, if not, the transaction will fail
 - If the original input currency is native currency, instead of adding more native currency required to be sent, we subtract it from the amount being sent.
 - The app fee is accrued after the same-chain transaction is indexed
 
+The app fee payee can claim their accrued fees on any chain that the payment currency exists on. So if they accrued USDC on 50 different chains, we consolidate this automatically when they proceed with claiming their balance.
+The app fee claim works by requesting a quote from `originChainId=0`, and following the steps to prove your ownership over the claim address by signing a signature and submitting it to us.
 App fee balance can be checked via the config api, the steps to which are outlined below:
 
 #### How do I know my offchain balance?
