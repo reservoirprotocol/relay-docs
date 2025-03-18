@@ -26,7 +26,7 @@ export const Chains = ({ env, id }) => {
         .slice()
         .sort((a, b) => a.displayName.localeCompare(b.displayName))
         .map((chain) => {
-          return `<div id="${id}-marker"></div><tr key=${chain.id}>
+          return `<tr key=${chain.id}>
           <td style="text-transform: capitalize;">${chain.displayName}</td>
           <td>${chain.id}</td>
           <td>${chain.tokenSupport}</td>
@@ -35,7 +35,7 @@ export const Chains = ({ env, id }) => {
         </tr>`;
         });
 
-      rootElement.innerHTML = rows.join("");
+      rootElement.innerHTML = `<div id="${id}-marker"></div>${rows.join("")}`;
       if (!window[key].observer) {
         let observer = new MutationObserver(function(mutations) {
           if (!document.getElementById(`${id}-marker`)) {
