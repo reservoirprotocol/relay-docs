@@ -101,7 +101,6 @@
         "references/api/step-execution",
         "references/api/handling-errors",
         "references/api/get-chains",
-        "references/api/get-config",
         "references/api/get-intents-status-v2",
         "references/api/get-requests",
         "references/api/get-token-price",
@@ -115,8 +114,9 @@
             "references/api/execute-call",
             "references/api/execute-bridge",
             "references/api/execute-swap",
-            "references/api/get-intents-status",
-            "references/api/get-price"
+            "references/api/get-price",
+            "references/api/get-config",
+            "references/api/get-intents-status"
           ]
         }
       ]

@@ -2,10 +2,10 @@
 title: Step Execution Overview
 ---
 
-<Warning>We recommend using the [SDK](/references/sdk/getting-started) over our APIs. The SDK will iterate the steps and return useful callback information.</Warning>
+<Tip>Tip: For advanced integrations, we recommend using Relay APIs. For simpler use cases, the [Relay SDK](/references/sdk/getting-started) automates steps and provides helpful callbacks, reducing manual effort.</Tip>
 
 ## Step Execution using the API
-When executing orders using the API directly, there are often multiple steps, like submitting a deposit transaction to the solver or signing a message. These steps differ based on the desired action and best route to execute the action. To make this simple, you can use the execute endpoints, which return the exact steps that you need to follow, including descriptions that you can display to users.
+When executing orders using the API directly, there are often multiple steps, like submitting a deposit transaction to the solver or signing a message. These steps differ based on the desired action and best route to execute the action. To make this simple, you can use the [quote endpoint](/references/api/get-quote), which return the exact steps that you need to follow, including descriptions that you can display to users.
 
 The flow looks like this:
 

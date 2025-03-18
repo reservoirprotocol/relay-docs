@@ -3,18 +3,12 @@ title: 'API Overview'
 ---
 We offer multiple APIs to fully harness Relay's tools. You can use our APIs for instant bridging or cross-chain execution.
 
-import { SdkRecommendWarning } from '/snippets/SdkRecommendWarning.mdx'
-
-<SdkRecommendWarning sdkLink={true} />
-
 | API | Description                           |
 | -------- | ------------------------------------- |
 |[Get Chains](/references/api/get-chains)|Returns all possible chains available|
-|[Get Config](/references/api/get-config)|Returns solver capacity data & user data|
-|[Get Execution Status](/references/api/get-intents-status-v2)|Returns current execution status|
-|[Get Transaction Status](/references/api/get-transactions-status)|Returns current status of Transaction|
-|[Get Request](/references/api/get-requests)|Returns all the cross chain transactions|
 |[Get Token Price](/references/api/get-token-price)|Returns the price of a token on a specific chain|
-|[Get Price](/references/api/get-price)|Get a lightweight quote for a bridge, swap or call|
-|[Get Quote](/references/api/get-quote)|Get a fully executable quote for a bridge, swap or call|
+|[Get Quote](/references/api/get-quote)|Get an executable quote for a bridge, swap or call|
+|[Get Execution Status](/references/api/get-intents-status-v2)|Returns current execution status|
+|[Get Request](/references/api/get-requests)|Returns all the cross chain transactions|
 |[Transactions Index](/references/api/transactions-index)|Notify the backend about a transaction|
+|[Multi-input Quote](/execute/swap/multi-input)|Get an executable quote for swapping tokens from multiple origin chains to a single destination chain|
