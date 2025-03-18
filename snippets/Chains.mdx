@@ -1,122 +1,101 @@
 export const Chains = ({ env, id }) => {
-  const key = `chains-${env}`
-  const chainToDexMap = {
-    '1': { name: 'ethereum', dexes: ['0x'], wrappedCurrencies: ['WETH'] },
-  '10': { name: 'optimism', dexes: ['0x'], wrappedCurrencies: ['WETH'] },
-  '56': { name: 'bnb', dexes: ['0x'], wrappedCurrencies: [] },
-  '137': { name: 'polygon', dexes: ['0x'], wrappedCurrencies: ['WETH'] },
-  '185': { name: 'mint', dexes: [], wrappedCurrencies: ['WETH'] },
-  '288': { name: 'boba', dexes: ['SushiSwap'], wrappedCurrencies: ['WETH'] },
-  '324': { name: 'zksync', dexes: ['0x'], wrappedCurrencies: ['WETH'] },
-  '480': { name: 'world-chain', dexes: ['Uniswap'], wrappedCurrencies: [] },
-  '690': { name: 'redstone', dexes: [], wrappedCurrencies: ['WETH'] },
-  '1101': { name: 'polygon-zkevm', dexes: ['SushiSwap'], wrappedCurrencies: ['WETH'] },
-  '1135': { name: 'lisk', dexes: [], wrappedCurrencies: ['WETH'] },
-  '2911': { name: 'hychain', dexes: [], wrappedCurrencies: [] },
-  '5112': { name: 'ham', dexes: [], wrappedCurrencies: ['WETH'] },
-  '7560': { name: 'cyber', dexes: [], wrappedCurrencies: ['WETH'] },
-  '8333': { name: 'B3', dexes: [], wrappedCurrencies: ['WETH'] },
-  '8453': { name: 'base', dexes: ['0x'], wrappedCurrencies: ['WETH'] },
-  '17071': { name: 'onchain-points', dexes: [], wrappedCurrencies: [] },
-  '33139': { name: 'ape', dexes: ['Camelot'], wrappedCurrencies: [] },
-  '33979': { name: 'funki', dexes: [], wrappedCurrencies: [] },
-  '34443': { name: 'mode', dexes: [], wrappedCurrencies: ['WETH'] },
-  '42161': { name: 'arbitrum', dexes: ['0x'], wrappedCurrencies: ['WETH'] },
-  '42170': { name: 'arbitrum-nova', dexes: ['SushiSwap'], wrappedCurrencies: ['WETH'] },
-  '43114': { name: 'avalanche', dexes: ['0x'], wrappedCurrencies: ['WETH'] },
-  '55244': { name: 'superposition', dexes: [], wrappedCurrencies: [] },
-  '59144': { name: 'linea', dexes: ['0x'], wrappedCurrencies: ['WETH'] },
-  '60808': { name: 'bob', dexes: [], wrappedCurrencies: ['WETH'] },
-  '70700': { name: 'apex', dexes: [], wrappedCurrencies: ['WETH'] },
-  '70701': { name: 'boss', dexes: [], wrappedCurrencies: ['WETH'] },
-  '81457': { name: 'blast', dexes: ['Uniswap'], wrappedCurrencies: ['WETH'] },
-  '167000': { name: 'taiko', dexes: [], wrappedCurrencies: ['WETH'] },
-  '534352': { name: 'scroll', dexes: ['SushiSwap'], wrappedCurrencies: ['WETH'] },
-  '660279': { name: 'xai', dexes: [], wrappedCurrencies: ['WXAI'] },
-  '984122': { name: 'forma', dexes: [], wrappedCurrencies: ['WTIA'] },
-  '7777777': { name: 'zora', dexes: ['Uniswap'], wrappedCurrencies: ['WETH'] },
-  '666666666': { name: 'degen', dexes: [], wrappedCurrencies: ['WDEGEN'] },
-  '792703809': { name: 'solana', dexes: ['Jupiter'], wrappedCurrencies: ['WSOL'] },
-  '888888888': { name: 'ancient8', dexes: [], wrappedCurrencies: ['WETH'] },
-  '1380012617': { name: 'rari', dexes: [], wrappedCurrencies: [] }
-  };
+  const key = `chains-${env}`;
 
-if (typeof window === "undefined") {
-  return null;
-}
-
-if (!window[key]) {
-  window[key] = {
-    fetching: false,
-    data: null
+  if (typeof window === "undefined") {
+    return null;
   }
-}
+  if (typeof document === "undefined") {
+    return null;
+  }
 
+  if (!window[key]) {
+    window[key] = {
+      fetching: false,
+      data: null,
+      observer: null
+    };
+  }
 
-
-if (!window[key].fetching) {
-  const appendChains = (data) => {
-    const rootElement = document.getElementById(id)
-    if (!rootElement) {
-      return
-    }
-    const rows = data.sort((a, b) => a.displayName.localeCompare(b.displayName)).map((chain) => {
-    const dexes = chainToDexMap[chain.id]?.dexes.join(", ") || "";
-      return `<tr key=${chain.id}>
+  if (!window[key].fetching) {
+    const appendChains = (data) => {
+      const rootElement = document.getElementById(id);
+      if (!rootElement) {
+        return;
+      }
+      const rows = data
+        .slice()
+        .sort((a, b) => a.displayName.localeCompare(b.displayName))
+        .map((chain) => {
+          return `<div id="${id}-marker"></div><tr key=${chain.id}>
           <td style="text-transform: capitalize;">${chain.displayName}</td>
           <td>${chain.id}</td>
-          <td>${dexes.length > 0 ? "All" : "Limited"}</td>
+          <td>${chain.tokenSupport}</td>
           <td>${chain.depositFee / 100}%</td>
           <td>${chain.withdrawalFee / 100}%</td>
-        </tr>`
-    })
-    rootElement.innerHTML = rows.join("")
-  }
+        </tr>`;
+        });
 
-  const fetchChains = async () => {
-    try {
-      window[key].fetching = true
-      window[key].data = null
-      const response = await fetch(
-        env === "testnets"
-        ? "https://api.testnets.relay.link/chains"
-        : "https://api.relay.link/chains"
+      rootElement.innerHTML = rows.join("");
+      if (!window[key].observer) {
+        let observer = new MutationObserver(function(mutations) {
+          if (!document.getElementById(`${id}-marker`)) {
+            appendChains(data)
+          }
+        });
+        observer.observe(document.body, {childList: true, subtree: true});
+        window[key].observer = observer
+      }
+    };
+
+    const fetchChains = async () => {
+      try {
+        if (window[key].fetching) return;
+        window[key].fetching = true;
+        window[key].data = null;
+        const response = await fetch(
+          env === "testnets"
+            ? "https://api.testnets.relay.link/chains"
+            : "https://api.relay.link/chains"
         );
         const data = await response.json();
-        window[key].fetching = false
-        window[key].data = data.chains
-        appendChains(data.chains)
-    } catch (e) {
-      window[key].fetching = false
-      window[key].data = false
+        window[key].fetching = false;
+        window[key].data = data.chains;
+        appendChains(data.chains);
+      } catch (e) {
+        window[key].fetching = false;
+        window[key].data = false;
+      }
+    };
+
+    if (window[key].data) {
+      appendChains(window[key].data);
+    } else {
+      fetchChains();
     }
   }
-  if (window[key].data) {
-    appendChains(window[key].data)
-  } else {
-    fetchChains()
-  }
-}
 
-return (
-
-<table style={{ width: "100%", borderSpacing: "48px" }} className="relay-table">
-  <thead
-    style={{
-      borderBottom: "1px solid rgb(227 226 230)",
-      paddingBottom: 5,
-      width: "100%",
-      fontSize: 16,
-    }}
-  >
-    <tr style={{ textAlign: "left" }}>
-      <th>Chain Name</th>
-      <th>Chain ID</th>
-      <th>Supported Tokens</th>
-      <th>Deposit Fee</th>
-      <th>Withdrawal Fee</th>
-    </tr>
-  </thead>
-  <tbody id={id}></tbody>
-</table>
-); };
+  return (
+    <table
+      style={{ width: "100%", borderSpacing: "48px" }}
+      className="relay-table"
+    >
+      <thead
+        style={{
+          borderBottom: "1px solid rgb(227 226 230)",
+          paddingBottom: 5,
+          width: "100%",
+          fontSize: 16,
+        }}
+      >
+        <tr style={{ textAlign: "left" }}>
+          <th>Chain Name</th>
+          <th>Chain ID</th>
+          <th>Supported Tokens</th>
+          <th>Deposit Fee</th>
+          <th>Withdrawal Fee</th>
+        </tr>
+      </thead>
+      <tbody id={id}></tbody>
+    </table>
+  );
+};
