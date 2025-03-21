@@ -28,6 +28,7 @@ App fees are measured in basis points (bps) based on the input value of an order
 You can accrue fees by including `appFees` in the [Quote API](https://docs.relay.link/references/api/get-quote).
 
 Since app fees accrue off-chain, we maintain a database that tracks:
+
 - The app fee payee address
 - The currency in which fees are accrued
 - The total claimable balance per currency
@@ -60,7 +61,7 @@ The claim process starts by requesting a quote with `originChainId=0`. To claim 
 To check your accrued off-chain fees, use the [Config API](/references/api/get-config) with `originChainId=0`. Here's an example curl command:
 
 ```
-curl --location 'https://api.relay.link/config/v2?originChainId=0&currencyId=eth&user=0x03508bB71268BBA25ECaCC8F620e01866650532c&destinationChainId=1' 
+curl --location 'https://api.relay.link/config/v2?originChainId=0&currency=eth&user=0x03508bB71268BBA25ECaCC8F620e01866650532c&destinationChainId=1' 
 ```
 
 The response includes the `user.balance` field, reflecting your off-chain balance:
@@ -86,42 +87,44 @@ The response includes the `user.balance` field, reflecting your off-chain balanc
 To claim your app fees, initiate a bridge transaction from chainId=0 to any other chain. If using the API, the response will guide you through signing and submitting a message to the `/execute/permit` endpoint to verify ownership of your claim address. The SDK automates this process for you.
 
 <CodeGroup>
-  ```bash API
-  curl --request POST \
-    --url https://api.relay.link/execute/bridge \
-    --header 'Content-Type: application/json' \
-    --data '{
-    "user": "0x03508bB71268BBA25ECaCC8F620e01866650532c",
-    "originChainId": 0,
-    "destinationChainId": 1,
-    "currency": "eth",
-    "amount": "1000"
-  }'
-  ```
 
-  ```javascript SDK
-  import { getClient } from '@reservoir0x/relay-sdk'
-  import { useWalletClient } from 'wagmi'
+```bash API
+curl --request POST \
+  --url https://api.relay.link/execute/bridge \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "user": "0x03508bB71268BBA25ECaCC8F620e01866650532c",
+  "originChainId": 0,
+  "destinationChainId": 1,
+  "currency": "eth",
+  "amount": "1000"
+}'
+```
 
-  const { data: wallet } = useWalletClient()
 
-  const quote = await getClient()?.actions.getQuote({
-    wallet,
-    chainId: 0,
-    toChainId: 1,
-    amount: '1000',
-    currency: 'eth'
-  })
+```javascript SDK
+import { getClient } from '@reservoir0x/relay-sdk'
+import { useWalletClient } from 'wagmi'
 
-  await relayClient.actions.execute({
-    quote,
-    wallet,
-    onProgress(steps) {
-      setStep(getCurrentStepDescription(steps))
-    },
-  })
+const { data: wallet } = useWalletClient()
 
-  ```
+const quote = await getClient()?.actions.getQuote({
+  wallet,
+  chainId: 0,
+  toChainId: 1,
+  amount: '1000',
+  currency: 'eth'
+})
+
+await relayClient.actions.execute({
+  quote,
+  wallet,
+  onProgress(steps) {
+    setStep(getCurrentStepDescription(steps))
+  },
+})
+```
+
 </CodeGroup>
 
 An example response from the API would be:
