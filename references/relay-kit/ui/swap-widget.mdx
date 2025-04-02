@@ -11,10 +11,10 @@ sidebarTitle: SwapWidget
 | Parameter    | Description                                                                                                                                    | Required |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------------|----------|
 | **supportedWalletVMs**       | A required array of VMs that the swap widget should support. If a VM is selected that's not listed it will fall back to the (deposit address)[https://support.relay.link/en/articles/10269920-how-do-deposit-addresses-work] ux. When setting this array make sure that the VMs are connectible by your wallet connection provider (dynamic, rainbow, privy, etc). | ✅       |
-| **fromToken** | The token to swap from. | ❌ |
-| **setFromToken** | A function to update the from token. | ❌ |
-| **toToken** | The token to swap to. | ❌ |
-| **setToToken** | A function to update the to token. | ❌ |
+| **fromToken** | The token to swap from. If provided, `setFromToken` must also be provided. | ❌ |
+| **setFromToken** | A function to update the from token. Required when `fromToken` is provided. | ❌ (✅ if fromToken is provided) |
+| **toToken** | The token to swap to. If provided, `setToToken` must also be provided. | ❌ |
+| **setToToken** | A function to update the to token. Required when `toToken` is provided. | ❌ (✅ if toToken is provided) |
 | **lockFromToken** | Disables selecting a from token in the ui. A `fromToken` is required in order for this setting to be applied. | ❌       |
 | **lockToToken** | Disables selecting a to token in the ui. A `toToken` is required in order for this setting to be applied. | ❌       |
 | **onFromTokenChange** | A callback triggered when the user changes the from token | ❌ |
