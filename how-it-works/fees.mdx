@@ -28,6 +28,7 @@ App fees are measured in basis points (bps) based on the input value of an order
 You can accrue fees by including `appFees` in the [Quote API](https://docs.relay.link/references/api/get-quote).
 
 Since app fees accrue off-chain, we maintain a database that tracks:
+
 - The app fee payee address
 - The currency in which fees are accrued
 - The total claimable balance per currency
@@ -44,6 +45,7 @@ App fees behave differently depending on whether the request is cross-chain or s
 **Same-Chain**
 
 - App fees apply only to swaps—not to wraps, unwraps, or sends.
+- App fees apply only to EVM same-chain swaps. Solana is not currently supported.
 - Fees are added in the form of the native currency. Even if the user isn’t initially spending native currency, they may still need to pay a small amount of it. For example, swapping `$MOG -> $MEME` may still require paying some ETH as an app fee.
 - Important: The app fee must be paid, or the transaction will fail.
 - If the input currency is native currency, instead of adding extra funds, the fee is deducted from the original amount being sent.
@@ -51,77 +53,80 @@ App fees behave differently depending on whether the request is cross-chain or s
 
 #### Claiming App Fees Across Chains
 
-App fee payees can claim accrued fees on any chain where the payment currency exists. If a payee accumulates USDC across multiple chains, these balances will be consolidated automatically when they proceed with a claim.
-
-The claim process starts by requesting a quote with `originChainId=0`. To claim the balance, the payee must prove ownership of their claim address by signing a message and submitting it.
+App fee payees must claim accrued fees for major currencies (ETH, USDC and USDT) on Base regardless of the origin chain. Other currencies must be claimed on origin chain of the request.
 
 #### How to know your offchain balance?
 
-To check your accrued off-chain fees, use the [Config API](/references/api/get-config) with `originChainId=0`. Here's an example curl command:
+To check your accrued off-chain fees, use the app fee balances API. Here's an example curl command:
 
 ```
-curl --location 'https://api.relay.link/config/v2?originChainId=0&currencyId=eth&user=0x03508bB71268BBA25ECaCC8F620e01866650532c&destinationChainId=1' 
+curl --location 'https://api.relay.link/app-fees/0x03508bb71268bba25ecacc8f620e01866650532c/balances' 
 ```
 
-The response includes the `user.balance` field, reflecting your off-chain balance:
+The response includes the `balances.currency` field, reflecting your off-chain balance for each currency accumulated:
 
 ```
-{
-  "enabled": true,
-  "user": {
-    "balance": "111912125413088295",
-    "maxBridgeAmount": "110982574378439751"
-  },
-  "solver": {
-    "address": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
-    "balance": "164745206761785203599",
-    "capacityPerRequest": "131796165409428162879"
-  },
-  "supportsExternalLiquidity": false
-}
+    {
+      "currency": {
+        "chainId": 8453,
+        "address": "0x0000000000000000000000000000000000000000",
+        "symbol": "ETH",
+        "name": "Ether",
+        "decimals": 18,
+        "metadata": {
+          "logoURI": "https://assets.relay.link/icons/1/light.png",
+          "verified": false,
+          "isNative": false
+        }
+      },
+      "amount": "75021651210714015",
+      "amountFormatted": "0.075021651210714015",
+      "amountUsd": "116.235557",
+      "minimumAmount": "75021651210714015"
+    }
 ```
 
 #### How to claim your off-chain balance?
 
-To claim your app fees, initiate a bridge transaction from chainId=0 to any other chain. If using the API, the response will guide you through signing and submitting a message to the `/execute/permit` endpoint to verify ownership of your claim address. The SDK automates this process for you.
+To claim your app fees, use the app fees claim API. If using the API, the response will guide you through signing and submitting a message to the `/execute/permit` endpoint to verify ownership of your claim address. The SDK automates this process for you.
 
 <CodeGroup>
-  ```bash API
-  curl --request POST \
-    --url https://api.relay.link/execute/bridge \
-    --header 'Content-Type: application/json' \
-    --data '{
-    "user": "0x03508bB71268BBA25ECaCC8F620e01866650532c",
-    "originChainId": 0,
-    "destinationChainId": 1,
-    "currency": "eth",
-    "amount": "1000"
-  }'
-  ```
 
-  ```javascript SDK
-  import { getClient } from '@reservoir0x/relay-sdk'
-  import { useWalletClient } from 'wagmi'
+```bash API
+curl --request POST \
+  --url https://api.relay.link/app-fees/0x03508bb71268bba25ecacc8f620e01866650532c/claim \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "chainId": 8453,
+    "currency": "0x0000000000000000000000000000000000000000",
+    "recipient": "0x03508bb71268bba25ecacc8f620e01866650532c"
+}'
+```
 
-  const { data: wallet } = useWalletClient()
 
-  const quote = await getClient()?.actions.getQuote({
-    wallet,
-    chainId: 0,
-    toChainId: 1,
-    amount: '1000',
-    currency: 'eth'
-  })
+```javascript SDK
+import { getClient } from '@reservoir0x/relay-sdk'
+import { useWalletClient } from 'wagmi'
 
-  await relayClient.actions.execute({
-    quote,
-    wallet,
-    onProgress(steps) {
-      setStep(getCurrentStepDescription(steps))
-    },
-  })
+const { data: wallet } = useWalletClient()
 
-  ```
+const quote = await getClient()?.actions.getQuote({
+  wallet,
+  chainId: 0,
+  toChainId: 1,
+  amount: '1000',
+  currency: 'eth'
+})
+
+await relayClient.actions.execute({
+  quote,
+  wallet,
+  onProgress(steps) {
+    setStep(getCurrentStepDescription(steps))
+  },
+})
+```
+
 </CodeGroup>
 
 An example response from the API would be:
@@ -132,7 +137,7 @@ An example response from the API would be:
         {
             "id": "authorize",
             "action": "Sign authorization",
-            "description": "Authorize the solver to spend funds from your wallet",
+            "description": "Authorize claiming funds",
             "kind": "signature",
             "items": [
                 {
@@ -140,44 +145,21 @@ An example response from the API would be:
                     "data": {
                         "sign": {
                             "signatureKind": "eip191",
-                            "message": "0x7f47382bd00e61fce60cdbc786e40128605f39a80dd3af6ff3df53aa8a39ffdf"
+                            "message": "0xa344c6123e3da9fc3f9c81edeab0b2eb39f2ea80ba54a6e0ad00123dc180619c"
                         },
                         "post": {
                             "endpoint": "/execute/permits",
                             "method": "POST",
                             "body": {
-                                "kind": "request",
-                                "requestId": "0x7f47382bd00e61fce60cdbc786e40128605f39a80dd3af6ff3df53aa8a39ffdf"
+                                "kind": "claim",
+                                "requestId": "0xa344c6123e3da9fc3f9c81edeab0b2eb39f2ea80ba54a6e0ad00123dc180619c"
                             }
                         }
-                    },
-                    "check": {
-                        "endpoint": "/intents/status?requestId=0x7f47382bd00e61fce60cdbc786e40128605f39a80dd3af6ff3df53aa8a39ffdf",
-                        "method": "GET"
                     }
                 }
             ]
         }
-    ],
-    "fees": {
-        "gas": "0",
-        "relayer": "25464163435202",
-        "relayerGas": "25464163435200",
-        "relayerService": "2",
-        "relayerCurrency": "eth",
-        "app": "0",
-        "appCurrency": "eth"
-    },
-    "breakdown": [
-        {
-            "value": "1000",
-            "timeEstimate": 10
-        }
-    ],
-    "balances": {
-        "userBalance": "75021651210714015",
-        "requiredToSolve": "25464163436202"
-    }
+    ]
 }
 ```
 
@@ -189,7 +171,7 @@ curl --request POST \
   --header "Content-Type: application/json" \
   --data '{
     "kind": "request",
-    "requestId": "0x7f47382bd00e61fce60cdbc786e40128605f39a80dd3af6ff3df53aa8a39ffdf"
+    "requestId": "0xa344c6123e3da9fc3f9c81edeab0b2eb39f2ea80ba54a6e0ad00123dc180619c"
   }'
 ```
 

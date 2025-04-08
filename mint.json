@@ -49,7 +49,11 @@
     },
     {
       "group": "Use Cases",
-      "pages": ["use-cases/instant-bridging", "use-cases/cross-chain-execution"]
+      "pages": [
+          "use-cases/instant-bridging", 
+          "use-cases/cross-chain-execution",
+          "use-cases/chain-abstraction"
+      ]
     },
     {
       "group": "Guides",
