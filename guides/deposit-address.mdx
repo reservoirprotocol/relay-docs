@@ -25,6 +25,8 @@ When using deposit addresses, there are more relayer gas fees associated with br
 
 If a deposit occurs more than than 30 seconds after the quote is generated, a new quote will automatically be generated post-deposit to account for gas fluctuation. This can change the amount received to be different than the quoted value.
 
+All relay EVM deposit addresses being and end with the character `d` (not case-sensitive). This is to help us with reducing the indexing search space. 
+
 ## Edge Cases
 
 We have automatic handling for common edge cases that can occur when using deposit addresses:
