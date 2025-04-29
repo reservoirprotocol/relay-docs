@@ -108,7 +108,7 @@
         "references/api/get-intents-status-v2",
         "references/api/get-requests",
         "references/api/get-token-price",
-        "references/api/get-currencies",
+        "references/api/get-currencies-v2",
         "references/api/get-quote",
         "references/api/swap-multi-input",
         "references/api/transactions-index",
@@ -120,7 +120,8 @@
             "references/api/execute-swap",
             "references/api/get-price",
             "references/api/get-config",
-            "references/api/get-intents-status"
+            "references/api/get-intents-status",
+            "references/api/get-currencies"
           ]
         }
       ]
