@@ -112,7 +112,7 @@
         "references/api/get-quote",
         "references/api/swap-multi-input",
         "references/api/transactions-index",
-        "references/api/transactions-single"
+        "references/api/transactions-single",
         {
           "group": "Deprecated",
           "pages": [
