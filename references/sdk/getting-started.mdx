@@ -45,7 +45,7 @@ createClient({
 
 You can replace the `baseApiUrl` with `TESTNET_RELAY_API` when testing with testnets. In the example above we also pass in an array of RelayChains converted from a viem chain, the sdk exports a function (`convertViemChainToRelayChain`) to easily do this. [Learn more](/references/sdk/createClient) about the `createClient` options.
 
-
+-- Warning! Calling `createClient` creates a singleton instance that will be used throughout your application. --
 ### (Optional) Dynamically Configure Chains:
 
 The sdk provides a utility function for fetching the supported chains dynamically and configuring the SDK. Below is an example of how you could set that up:
