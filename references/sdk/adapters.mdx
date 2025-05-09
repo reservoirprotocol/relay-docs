@@ -9,7 +9,7 @@ An adapter is a function that takes parameters and returns an object that adhere
 
 | Property                   | Description                                                                                     | Required |
 | -------------------------- | ----------------------------------------------------------------------------------------------- | -------- |
-| **vmType**                    | A string that can either be `'SOL'` or `'EVM'`                                                   | ✅       |
+| **vmType**                    | A string representing a supported vmType (`evm`  `svm`  `bvm`  `suivm`)                                                   | ✅       |
 | **getChainId**                | An async function that returns a chain id                                                                                              | ✅       |
 | **handleSignMessageStep**     | An async function that given a signature step item and a step generates a signature                                                                                              | ✅       |
 | **handleSendTransactionStep** | An async function that given a chain id, a transaction step item and a step returns a transaction hash                                                                                              | ✅       |
@@ -17,6 +17,9 @@ An adapter is a function that takes parameters and returns an object that adhere
 | **address**                   | An async function that returns the currently connected to address, an address that can sign messages and submit transactions                                                                                              | ✅       |
 | **switchChain**               | An async function that given a chain id switches to that chain, either by prompting the user or automatically switching chains                                                                                              | ✅       |
 | **transport**                 | An optional [transport](https://viem.sh/docs/clients/intro.html) to use when making rpc calls.                                                                                               | ❌      |
+| **getBalance**                 | An optional method to override the default balance fetching logic for selected tokens in the ui kit.                                                                                               | ❌      |
+| **supportsAtomicBatch**        | An optional async function that takes a chain ID and returns whether the wallet supports [EIP-5792's atomic batch capability](https://www.eip5792.xyz/introduction). EVM wallets only.  | ❌      |
+| **handleBatchTransactionStep** | An optional async function that takes a chain ID and an array of transaction step items, returning a call bundle identifier for batch processing. Only available for EVM wallets that support atomic batching. | ❌      |
 
 
 ### What adapters are available out of the box?
@@ -30,6 +33,9 @@ The following adapters are officially maintained and developed by the Reservoir 
 [Viem Adapter](https://github.com/reservoirprotocol/relay-kit/blob/main/packages/sdk/src/utils/viemWallet.ts): This adapter is the default one used when no adapter is provided. You can also import it yourself to convert any viem wallet client into an adapted wallet ready to be used in the sdk.
 
 [Ethers Adapter](https://github.com/reservoirprotocol/relay-kit/tree/main/packages/relay-ethers-wallet-adapter): If your application uses ethers then you'll need this adapter to use the SDK. You'll still need to install viem as that's required for polling transactions but you can pass in your ethers signer to submit transactions and sign messages.
+
+[Sui Adapter](https://github.com/reservoirprotocol/relay-kit/tree/main/packages/relay-sui-wallet-adapter): This adapter gives the sdk the ability to submit transactions on Sui networks. Under the hood it uses the [@mysten/sui](https://www.npmjs.com/package/@mysten/sui) sdk.
+
 
 ### How can I use an adapter?
 
@@ -156,5 +162,52 @@ getClient().actions.execute({
   },
   ...
 })
+```
+
+
+```typescript Sui
+import { getFullnodeUrl, SuiClient } from '@mysten/sui/client'
+import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519'
+import { getClient, Execute, getQuote } from "@reservoir0x/relay-sdk"
+import { adaptSuiWallet } from '@reservoir0x/relay-sui-wallet-adapter'
+
+// Create a connection to Sui mainnet
+const rpcUrl = getFullnodeUrl('mainnet')
+const suiClient = new SuiClient({ url: rpcUrl })
+
+const keypair = new Ed25519Keypair()
+const walletAddress = keypair.toSuiAddress()
+
+const adaptedWallet = adaptSuiWallet(
+  walletAddress,
+  103665049, //chain id that Relay uses to identify Sui 
+  suiClient,
+  async (tx) => {
+   const result = await suiClient.signAndExecuteTransaction({
+      transaction: tx,
+      signer: keypair,
+      requestType: 'WaitForLocalExecution',
+      options: {
+        showEffects: true,
+      }
+    });
+
+    return result
+  }
+)
+
+const options = ... //define this based on getQuote options
+
+const quote = await getClient().actions.getQuote(options)
+
+getClient().actions.execute({
+  quote,
+  wallet: adaptedWallet,
+  onProgress: ({steps, fees, breakdown, currentStep, currentStepItem, txHashes, details}) => {
+    //custom handling
+  },
+    ...
+})
+
 ```
 </CodeGroup>
