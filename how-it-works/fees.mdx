@@ -45,7 +45,7 @@ App fees behave differently depending on whether the request is cross-chain or s
 **Same-Chain**
 
 - App fees apply only to swaps—not to wraps, unwraps, or sends.
-- App fees apply only to EVM same-chain swaps. Solana is not currently supported.
+- App fees apply only to EVM and SVM same-chain swaps.
 - Fees are added in the form of the native currency. Even if the user isn’t initially spending native currency, they may still need to pay a small amount of it. For example, swapping `$MOG -> $MEME` may still require paying some ETH as an app fee.
 - Important: The app fee must be paid, or the transaction will fail.
 - If the input currency is native currency, instead of adding extra funds, the fee is deducted from the original amount being sent.
