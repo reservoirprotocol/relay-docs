@@ -1,0 +1,52 @@
+---
+title: "Smart Accounts Overview"
+description: "Learn about ERC-4337 and EIP-7702 — the two evolving standards that power smart account functionality in Ethereum and Relay"
+---
+
+Smart accounts are a powerful upgrade over traditional Ethereum accounts. They enable programmable features that go far beyond simple ETH transfers or contract calls. With smart accounts, you can:
+
+- ✅ **Batch multiple actions** into one atomic transaction (e.g. approve + swap)
+- ⛽ **Sponsor gas** for users, enabling gasless or ERC-20-fee flows
+- 🔐 **Add access control**, session keys, or 2FA to secure user actions
+- 🔄 **Delegate execution** while keeping the original user as `msg.sender`
+- 🌉 **Execute logic across chains** with origin-to-destination coordination
+
+Together, these features unlock smoother user experiences, more expressive apps, and safer account management.
+
+Relay supports two complementary standards that make this possible:
+
+---
+
+### 🔹 [ERC-4337](./erc-4337)
+
+ERC-4337 introduces a new abstraction layer built around **UserOperations**, a custom mempool, and smart account contracts. It enables:
+
+- Sponsored transactions via **paymasters**
+- Flexible smart account validation logic
+- Secure UX patterns like **social recovery**, plugins, and batched workflows
+
+It requires a smart account implementation (e.g. Safe, Kernel) and interaction with bundlers and the EntryPoint contract.
+
+---
+
+### 🔹 [EIP-7702](./eip-7702)
+
+EIP-7702 adds a new transaction type that lets EOAs **become smart contracts**. With a signed `authorizationList`, you can:
+
+- Execute smart contract code **from your existing EOA**
+- Keep `msg.sender` equal to the user
+- Perform destination-side logic without deploying a smart contract
+- Delegate to ERC-4337-compatible logic if needed
+
+No new accounts. No bundlers. Just signatures and seamless smart wallet behavior.
+
+## 🔗 Explore the guides
+
+- 📘 [ERC-4337 Guide](./erc-4337) – Learn how to use UserOperations, bundlers, and paymasters
+- 📘 [EIP-7702 Guide](./eip-7702) – See how to execute smart account logic from an EOA using `authorizationList`
+
+---
+
+Relay supports both standards across testnets, with EIP-7702 coming to mainnet soon. Whether you're building wallets, gasless dApps, or cross-chain UX flows — smart accounts unlock a new design space.
+
+Let us know what you're building.
