@@ -64,12 +64,19 @@
         "guides/solana",
         "guides/testnet",
         {
+          "group": "Smart Accounts",
+          "pages": [
+            "guides/smart-accounts",
+            "guides/erc-4337",
+            "guides/eip-7702"        
+          ]
+        },
+        {
           "group": "Advanced",
           "pages": [
             "guides/just-in-time-gas",
             "guides/deep-linking",
-            "guides/deposit-address",
-            "guides/erc-4337"
+            "guides/deposit-address"
           ]
         }
       ]
