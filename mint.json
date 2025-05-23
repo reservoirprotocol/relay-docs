@@ -50,9 +50,9 @@
     {
       "group": "Use Cases",
       "pages": [
-          "use-cases/instant-bridging", 
-          "use-cases/cross-chain-execution",
-          "use-cases/chain-abstraction"
+        "use-cases/instant-bridging",
+        "use-cases/cross-chain-execution",
+        "use-cases/chain-abstraction"
       ]
     },
     {
@@ -156,7 +156,7 @@
             "references/relay-kit/hooks/useRelayChains",
             "references/relay-kit/hooks/useRequests",
             "references/relay-kit/hooks/useTokenList",
-			"references/relay-kit/hooks/useTokenPrice"
+            "references/relay-kit/hooks/useTokenPrice"
           ]
         },
         {
@@ -173,7 +173,8 @@
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/RelayProtocol"
+    "twitter": "https://twitter.com/RelayProtocol",
+    "discord": "https://discord.com/invite/relayprotocol"
   },
   "integrations": {
     "intercom": "b09ps4q8"
