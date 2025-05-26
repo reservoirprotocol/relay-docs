@@ -20,7 +20,7 @@ sidebarTitle: SwapWidget
 | **onFromTokenChange** | A callback triggered when the user changes the from token | ❌ |
 | **onToTokenChange** | A callback triggered when the user changes the to token | ❌ |
 | **lockChainId** | If set, locks the chain selection to the specified chain ID. Requires default tokens to be configured for this to work properly. | ❌ |
-| **wallet** | An [AdaptedWallet](https://github.com/reservoirprotocol/relay-kit/blob/main/packages/sdk/src/types/AdaptedWallet.ts#L13) object representing the user's wallet. | ❌ |
+| **wallet** | An [AdaptedWallet](https://github.com/reservoirprotocol/relay-kit/blob/main/packages/sdk/src/types/AdaptedWallet.ts#L13) object representing the user's wallet. While this is not required as it's automatically pulled from wagmi for EVM chains, it's recommended to always provide this if possible. | ❌ |
 | **multiWalletSupportEnabled** | A boolean indicating whether multi-wallet (evm/svm) support is enabled. | ❌ |
 | **linkedWallets** | An array of [LinkedWallet](https://github.com/reservoirprotocol/relay-kit/blob/main/packages/ui/src/types/index.ts#L14) objects when multi-wallet support is enabled. | ❌ (✅ if multiWalletSupportEnabled is true) |
 | **onSetPrimaryWallet** | A callback function to set the primary wallet when multi-wallet support is enabled. | ❌ (✅ if multiWalletSupportEnabled is true) |
@@ -45,6 +45,7 @@ sidebarTitle: SwapWidget
 import { SwapWidget } from '@reservoir0x/relay-kit-ui'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useState } from 'react'
+import { useWalletClient } from 'wagmi'
 
 export default function MyComponent() {
   const { openConnectModal } = useConnectModal()
@@ -65,8 +66,11 @@ export default function MyComponent() {
     logoURI: 'https://ethereum-optimism.github.io/data/USDC/logo.png'
   })
 
+  const walletClient = useWalletClient()
+
   return (
     <SwapWidget
+      wallet={adaptViemWallet(walletClient)}
       fromToken={fromToken}
       setFromToken={setFromToken}
       toToken={toToken}
