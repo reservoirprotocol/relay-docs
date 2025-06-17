@@ -12,7 +12,6 @@ By default, the Solver is the sender (`msg.sender`) of destination chain transac
 EIP-7702 solves this by turning any EOA into a smart wallet, allowing relayed calls to preserve the original `msg.sender`. This unlocks new capabilities like:
 
 - Delegated execution: destination chain transactions that require the user as `msg.sender`
-- Cross-chain payment routing: use gas from one chain (e.g., Base) to pay for transactions on another (e.g., Sepolia)
 - Batched actions: approvals, minting, or function calls that must originate from the user
 
 ---
@@ -32,7 +31,7 @@ const eoa7702 = privateKeyToAccount("EOA_PRIVATE_KEY");
 const smartAccountImplementation = "0xdef..."; // Replace with your smart account implementation
 
 // Step 2: Sign EIP-7702 authorization
-const authorizationHash = await sepoliaWalletClient.signAuthorization({
+const authorizationHash = await walletClient.signAuthorization({
   account: eoa7702,
   contractAddress: smartAccountImplementation,
 });
