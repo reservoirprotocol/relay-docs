@@ -186,16 +186,18 @@
       "group": "Vaults",
       "pages": [
         "references/vaults/overview",
+        "references/vaults/architecture",
+        "references/vaults/security",
         "references/vaults/backend",
         {
           "group": "Guides",
           "pages": [
             "references/vaults/guides/bridging",
-            "references/vaults/guides/interracting"
+            "references/vaults/guides/interacting"
           ]
         },
         {
-          "group": "Contracts",
+          "group": "Contracts Reference",
           "pages": [
             "references/vaults/contracts/overview",
             "references/vaults/contracts/RelayPoolFactory",
