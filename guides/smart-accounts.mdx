@@ -5,16 +5,16 @@ description: "How Relay uses ERC-4337 and EIP-7702 to enable smart wallet featur
 
 Smart accounts unlock new design space in **Relay’s cross-chain infrastructure**. With them, we can:
 
-- ✅ **Batch multiple actions** into one atomic call (e.g. deposit → call user wallet → mint NFT)
-- 🔄 **Delegate tx execution to the user**, preserving `msg.sender` on the destination chain
-- ⛽ **Sponsor gas** or use ERC-20s for fee payments
-- 🌉 **Route logic across chains**, bridging into EOAs that execute contract logic without a separate deployment
+- **Batch multiple actions** into one atomic call (e.g. deposit → call user wallet → mint NFT)
+- **Delegate tx execution to the user**, preserving `msg.sender` on the destination chain
+- **Sponsor gas** or use ERC-20s for fee payments
+- **Route logic across chains**, bridging into EOAs that execute contract logic without a separate deployment
 
 Relay supports two complementary standards for smart account execution:
 
 ---
 
-### 🔹 [ERC-4337](./erc-4337)
+### [ERC-4337](./erc-4337)
 
 Relay uses ERC-4337 to support complex smart account flows. Key features include:
 
@@ -26,7 +26,7 @@ This is useful when you have smart accounts like **Safe** or **Kernel**, and int
 
 ---
 
-### 🔹 [EIP-7702](./eip-7702)
+### [EIP-7702](./eip-7702)
 
 Relay uses EIP-7702 to enable **EOAs to become smart accounts**.
 
@@ -40,7 +40,7 @@ We support 7702 to:
 
 ---
 
-### 🧠 Why Smart Accounts Matter for Relay
+### Why Smart Accounts Matter for Relay
 
 Smart accounts let us overcome key limitations in a cross-chain solver system:
 
@@ -63,8 +63,8 @@ This wasn’t previously possible because we couldn’t inject logic into EOAs *
 
 ## 🔗 Explore the Guides
 
-- 📘 [ERC-4337 Guide](./erc-4337) – Learn how Relay uses UserOperations, paymasters, and bundlers
-- 📘 [EIP-7702 Guide](./eip-7702) – See how Relay turns EOAs into smart wallets with `authorizationList`
+- [ERC-4337 Guide](./erc-4337) – Learn how Relay uses UserOperations, paymasters, and bundlers
+- [EIP-7702 Guide](./eip-7702) – See how Relay turns EOAs into smart wallets with `authorizationList`
 
 ---
 
