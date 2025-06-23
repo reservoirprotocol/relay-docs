@@ -1,0 +1,69 @@
+---
+title: "Quote Errors"
+description: "Learn about expected and unexpected quote errors and how to handle them."
+---
+
+When calling the `/quote` endpoint, various errors may be returned depending on request conditions, user input, or internal routing logic. This guide outlines the possible error codes, their meanings, and how to handle them.
+
+## Expected Errors
+
+These are known validation and routing issues that developers should gracefully handle in their integrations:
+
+| Error Code                                    | Message                                                                     | Description                                                           |
+| --------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `INVALID_GAS_LIMIT_FOR_DEPOSIT_SPECIFIED_TXS` | Deposit-specified transactions are only supported for exact output requests | Deposit-specified transactions require exact output mode.             |
+| `NO_SWAP_ROUTES_FOUND`                        | Could not execute swap. Please try again with a different amount.           | No viable path was found to perform the swap.                         |
+| `INVALID_SLIPPAGE_TOLERANCE`                  | Slippage tolerance must be an integer in the form of a string               | Slippage must be a whole number string in basis points (e.g., '100'). |
+| `SANCTIONED_WALLET_ADDRESS`                   | Detected sanctioned address                                                 | Transaction involves a sanctioned wallet address.                     |
+| `SANCTIONED_CURRENCY`                         | Detected sanctioned currency address                                        | Transaction involves a sanctioned token address.                      |
+| `INVALID_INPUT_CURRENCY`                      | Invalid input or output currency                                            | Input token is not supported or unrecognized.                         |
+| `INVALID_OUTPUT_CURRENCY`                     | Invalid input or output currency                                            | Output token is not supported or unrecognized.                        |
+| `CHAIN_DISABLED`                              | Chain Disabled                                                              | The selected chain is currently disabled.                             |
+| `ROUTE_TEMPORARILY_RESTRICTED`                | Route temporarily restricted due to high activity                           | This route has been rate-limited or blocked temporarily.              |
+| `AMOUNT_TOO_LOW`                              | Amount is too small to be swapped                                           | The input/output amount is below the allowed minimum.                 |
+
+---
+
+## Unexpected Errors
+
+These indicate infrastructure or downstream failures and are not common:
+
+| Error Code                       | Description                                                               |
+| -------------------------------- | ------------------------------------------------------------------------- |
+| `DESTINATION_TX_FAILED`          | The relay transaction failed on the destination chain.                    |
+| `ERC20_ROUTER_ADDRESS_NOT_FOUND` | The router contract for a token could not be located.                     |
+| `UNKNOWN_ERROR`                  | An unclassified or unexpected error occurred.                             |
+| `SWAP_QUOTE_FAILED`              | Failed to calculate a quote, possibly due to third-party pricing failure. |
+| `PERMIT_FAILED`                  | Permit signature validation failed for token approvals.                   |
+
+---
+
+## Example Error Responses
+
+**Invalid Input Currency**
+
+```json
+{
+  "message": "Invalid input or output currency",
+  "errorCode": "INVALID_INPUT_CURRENCY"
+}
+```
+
+### No Routes Found
+
+```json
+{
+  "message": "No routes found",
+  "errorCode": "NO_SWAP_ROUTES_FOUND"
+}
+```
+
+### Destination Transaction Failed
+
+```json
+{
+  "message": "Destination transaction failed",
+  "errorCode": "DESTINATION_TX_FAILED",
+  "errorData": "execution reverted"
+}
+```
