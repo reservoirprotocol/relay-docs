@@ -199,7 +199,6 @@
         {
           "group": "Contracts Reference",
           "pages": [
-            "references/vaults/contracts/overview",
             "references/vaults/contracts/RelayPoolFactory",
             "references/vaults/contracts/RelayPool",
             "references/vaults/contracts/RelayPoolNativeGateway",
