@@ -61,6 +61,7 @@
         "guides/bridging",
         "guides/swapping",
         "guides/calling",
+        "guides/quote-errors",
         "guides/solana",
         "guides/testnet",
         {
