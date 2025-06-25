@@ -40,6 +40,10 @@
     {
       "name": "UI Kit",
       "url": "references/relay-kit"
+    },
+    {
+      "name": "Relay Vaults",
+      "url": "references/vaults"
     }
   ],
   "navigation": [
@@ -69,7 +73,7 @@
           "pages": [
             "guides/smart-accounts",
             "guides/erc-4337",
-            "guides/eip-7702"        
+            "guides/eip-7702"
           ]
         },
         {
@@ -175,6 +179,32 @@
             "references/relay-kit/ui/swap-widget",
             "references/relay-kit/ui/theming",
             "references/relay-kit/ui/troubleshooting"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Vaults",
+      "pages": [
+        "references/vaults/overview",
+        "references/vaults/architecture",
+        "references/vaults/security",
+        "references/vaults/backend",
+        {
+          "group": "Guides",
+          "pages": [
+            "references/vaults/guides/bridging",
+            "references/vaults/guides/interacting"
+          ]
+        },
+        {
+          "group": "Contracts Reference",
+          "pages": [
+            "references/vaults/contracts/RelayPoolFactory",
+            "references/vaults/contracts/RelayPool",
+            "references/vaults/contracts/RelayPoolNativeGateway",
+            "references/vaults/contracts/RelayBridgeFactory",
+            "references/vaults/contracts/RelayBridge"
           ]
         }
       ]
