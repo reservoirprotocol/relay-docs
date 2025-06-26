@@ -150,18 +150,22 @@ The quote response contains all information needed to execute the bridge:
 
 ### Quote Parameters
 
-| Parameter              | Type    | Required | Description                                             |
-| ---------------------- | ------- | -------- | ------------------------------------------------------- |
-| `user`                 | string  | Yes      | Address that will deposit funds and submit transactions |
-| `originChainId`        | number  | Yes      | Source chain ID (e.g., 1 for Ethereum)                  |
-| `destinationChainId`   | number  | Yes      | Destination chain ID (e.g., 8453 for Base)              |
-| `originCurrency`       | string  | Yes      | Currency ID on source chain (e.g., "eth", "usdc")       |
-| `destinationCurrency`  | string  | Yes      | Currency ID on destination chain                        |
-| `amount`               | string  | Yes      | Amount in wei/smallest unit                             |
-| `tradeType`            | string  | Yes      | "EXACT_INPUT" or "EXACT_OUTPUT"                         |
-| `recipient`            | string  | No       | Recipient address (defaults to user)                    |
-| `slippageTolerance`    | string  | No       | Slippage in basis points (e.g., "50" for 0.5%)          |
-| `useExternalLiquidity` | boolean | No       | Use canonical\+ bridging for more liquidity             |
+| Parameter              | Type    | Required | Description                                                                                                                                                                       |
+| ---------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `user`                 | string  | Yes      | Address that will deposit funds and submit transactions                                                                                                                           |
+| `originChainId`        | number  | Yes      | Source chain ID (e.g., 1 for Ethereum)                                                                                                                                            |
+| `destinationChainId`   | number  | Yes      | Destination chain ID (e.g., 8453 for Base)                                                                                                                                        |
+| `originCurrency`       | string  | Yes      | Currency ID on source chain (e.g., "eth", "usdc")                                                                                                                                 |
+| `destinationCurrency`  | string  | Yes      | Currency ID on destination chain                                                                                                                                                  |
+| `amount`               | string  | Yes      | Amount in wei/smallest unit                                                                                                                                                       |
+| `tradeType`            | string  | Yes      | "EXACT_INPUT" or "EXACT_OUTPUT"                                                                                                                                                   |
+| `recipient`            | string  | No       | Recipient address (defaults to user)                                                                                                                                              |
+| `slippageTolerance`    | string  | No       | Slippage in basis points (e.g., "50" for 0.5%)                                                                                                                                    |
+| `useExternalLiquidity` | boolean | No       | Use canonical\+ bridging for more liquidity                                                                                                                                       |
+| `referrer`             | string  | No       |                                                                                                                                                                                   |
+| `refundTo`             | string  | No       | Address to send the refund to in the case of failure, if not specified the user address is used                                                                                   |
+| `topupGas`             | boolean | No       | If set, the destination fill will include a gas topup to the recipient (only supported for EVM chains if the requested currency is not the gas currency on the destination chain) |
+| `topupGasAmount`       | string  | No       | The destination gas topup amount in USD decimal format, e.g 100000 = \$1. topupGas is required to be enabled. Defaults to 2000000 (\$2)                                           |
 
 ## Execute the Bridge
 
@@ -358,15 +362,15 @@ Control slippage tolerance for your bridges:
 
 ## Preflight Checklist
 
-☐ **Verify user balance** - Ensure the user has sufficient funds for the bridge amount plus fees\
+☐ **Verify user balance** - Ensure the user has sufficient funds for the bridge amount plus fees\\
 
-☐ **Check chain support** - Confirm both origin and destination chains are supported\
+☐ **Check chain support** - Confirm both origin and destination chains are supported\\
 
-☐ **Validate quote** - Quotes expire after 30 seconds, so fetch fresh quotes before execution\
+☐ **Validate quote** - Quotes expire after 30 seconds, so fetch fresh quotes before execution\\
 
-☐ **Handle errors** - Implement proper error handling for API requests and transaction failures\
+☐ **Handle errors** - Implement proper error handling for API requests and transaction failures\\
 
-☐ **Monitor progress** - Use the status endpoints to track bridge completion\
+☐ **Monitor progress** - Use the status endpoints to track bridge completion\\
 
 ☐ **Test thoroughly** - Test with small amounts first, use testnet API for development
 
