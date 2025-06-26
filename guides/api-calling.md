@@ -445,20 +445,22 @@ quote_request = {
 
 ### Quote Parameters for Cross-Chain Calls
 
-| Parameter             | Type   | Required | Description                               |
-| --------------------- | ------ | -------- | ----------------------------------------- |
-| `user`                | string | Yes      | Address that will pay for the transaction |
-| `originChainId`       | number | Yes      | Chain ID where payment originates         |
-| `destinationChainId`  | number | Yes      | Chain ID where contract calls execute     |
-| `originCurrency`      | string | Yes      | Payment currency on origin chain          |
-| `destinationCurrency` | string | Yes      | Currency on destination chain             |
-| `amount`              | string | Yes      | **Total value of all txs combined**       |
-| `tradeType`           | string | Yes      | **Must be "EXACT_OUTPUT"**                |
-| `txs`                 | array  | Yes      | Array of transaction objects              |
-| `txs[].to`            | string | Yes      | Contract address to call                  |
-| `txs[].value`         | string | Yes      | ETH value to send with call               |
-| `txs[].data`          | string | Yes      | Encoded function call data                |
-| `recipient`           | string | No       | Alternative recipient for any surplus     |
+| Parameter             | Type   | Required | Description                                                                                     |
+| --------------------- | ------ | -------- | ----------------------------------------------------------------------------------------------- |
+| `user`                | string | Yes      | Address that will pay for the transaction                                                       |
+| `originChainId`       | number | Yes      | Chain ID where payment originates                                                               |
+| `destinationChainId`  | number | Yes      | Chain ID where contract calls execute                                                           |
+| `originCurrency`      | string | Yes      | Payment currency on origin chain                                                                |
+| `destinationCurrency` | string | Yes      | Currency on destination chain                                                                   |
+| `amount`              | string | Yes      | **Total value of all txs combined**                                                             |
+| `tradeType`           | string | Yes      | **Must be "EXACT_OUTPUT"**                                                                      |
+| `txs`                 | array  | Yes      | Array of transaction objects                                                                    |
+| `txs[].to`            | string | Yes      | Contract address to call                                                                        |
+| `txs[].value`         | string | Yes      | ETH value to send with call                                                                     |
+| `txs[].data`          | string | Yes      | Encoded function call data                                                                      |
+| `recipient`           | string | No       | Alternative recipient for any surplus                                                           |
+| `referrer`            | string | No       | Identifier that can be used to monitor transactions from a specific source.                     |
+| `refundTo`            | string | No       | Address to send the refund to in the case of failure, if not specified the user address is used |
 
 ## Execute the Call
 
@@ -802,25 +804,25 @@ Monetize your cross-chain calling integration:
 
 ## Preflight Checklist
 
-☐ **Contract compatibility** - Ensure your smart contract follows Relay compatibility guidelines\
+☐ **Contract compatibility** - Ensure your smart contract follows Relay compatibility guidelines\\
 
-☐ **ERC20 approvals** - Include approval transactions before any ERC20 spending calls\
+☐ **ERC20 approvals** - Include approval transactions before any ERC20 spending calls\\
 
-☐ **Verify transaction data** - Confirm `amount` equals the sum of all `txs[].value` fields\
+☐ **Verify transaction data** - Confirm `amount` equals the sum of all `txs[].value` fields\\
 
-☐ **Check tradeType** - Must be set to `"EXACT_OUTPUT"` for cross-chain calls\
+☐ **Check tradeType** - Must be set to `"EXACT_OUTPUT"` for cross-chain calls\\
 
-☐ **Validate call data** - Ensure contract function calls are properly encoded\
+☐ **Validate call data** - Ensure contract function calls are properly encoded\\
 
-☐ **Token addresses** - Use correct ERC20 contract addresses for each chain\
+☐ **Token addresses** - Use correct ERC20 contract addresses for each chain\\
 
-☐ **Test contract calls** - Verify contract functions work as expected on destination chain\
+☐ **Test contract calls** - Verify contract functions work as expected on destination chain\\
 
-☐ **Balance verification** - Confirm user has sufficient funds for amount \+ fees\
+☐ **Balance verification** - Confirm user has sufficient funds for amount \+ fees\\
 
-☐ **Error handling** - Implement proper error handling for failed contract executions\
+☐ **Error handling** - Implement proper error handling for failed contract executions\\
 
-☐ **Monitor progress** - Use status endpoints to track execution progress\
+☐ **Monitor progress** - Use status endpoints to track execution progress\\
 
 ☐ **Gas estimation** - Account for potential gas usage variations in contract calls
 

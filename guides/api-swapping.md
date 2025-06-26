@@ -27,7 +27,7 @@ To swap tokens across chains, you need to specify the source and destination cha
 <CodeGroup>
 
 ```bash cURL
-curl -X POST "https://api.relay.link/execute/swap" \
+curl -X POST "https://api.relay.link/quote" \
   -H "Content-Type: application/json" \
   -d '{
     "user": "0x742d35Cc6634C0532925a3b8D9d4DB0a2D7DD5B3",
@@ -42,7 +42,7 @@ curl -X POST "https://api.relay.link/execute/swap" \
 
 
 ```javascript JavaScript/Node.js
-const response = await fetch('https://api.relay.link/execute/swap', {
+const response = await fetch('https://api.relay.link/quote', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ const swapQuote = await response.json();
 ```python Python
 import requests
 
-response = requests.post('https://api.relay.link/execute/swap', json={
+response = requests.post('https://api.relay.link/quote', json={
     'user': '0x742d35Cc6634C0532925a3b8D9d4DB0a2D7DD5B3',
     'originChainId': 1,
     'destinationChainId': 8453,
@@ -179,18 +179,22 @@ The swap response contains detailed information about the exchange rates, fees, 
 
 ### Quote Parameters for Swapping
 
-| Parameter              | Type    | Required | Description                                         |
-| ---------------------- | ------- | -------- | --------------------------------------------------- |
-| `user`                 | string  | Yes      | Address that will initiate the swap                 |
-| `originChainId`        | number  | Yes      | Source chain ID (e.g., 1 for Ethereum)              |
-| `destinationChainId`   | number  | Yes      | Destination chain ID (e.g., 8453 for Base)          |
-| `originCurrency`       | string  | Yes      | Input currency ID (e.g., "eth", "usdc")             |
-| `destinationCurrency`  | string  | Yes      | Output currency ID                                  |
-| `amount`               | string  | Yes      | Amount in wei/smallest unit                         |
-| `tradeType`            | string  | Yes      | "EXACT_INPUT", "EXACT_OUTPUT", or "EXPECTED_OUTPUT" |
-| `recipient`            | string  | No       | Recipient address (defaults to user)                |
-| `slippageTolerance`    | string  | No       | Slippage in basis points (e.g., "50" for 0.5%)      |
-| `useExternalLiquidity` | boolean | No       | Use canonical\+ bridging for more liquidity         |
+| Parameter              | Type    | Required | Description                                                                                                                                                                       |
+| ---------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `user`                 | string  | Yes      | Address that will initiate the swap                                                                                                                                               |
+| `originChainId`        | number  | Yes      | Source chain ID (e.g., 1 for Ethereum)                                                                                                                                            |
+| `destinationChainId`   | number  | Yes      | Destination chain ID (e.g., 8453 for Base)                                                                                                                                        |
+| `originCurrency`       | string  | Yes      | Input currency ID (e.g., "eth", "usdc")                                                                                                                                           |
+| `destinationCurrency`  | string  | Yes      | Output currency ID                                                                                                                                                                |
+| `amount`               | string  | Yes      | Amount in wei/smallest unit                                                                                                                                                       |
+| `tradeType`            | string  | Yes      | "EXACT_INPUT", "EXACT_OUTPUT", or "EXPECTED_OUTPUT"                                                                                                                               |
+| `recipient`            | string  | No       | Recipient address (defaults to user)                                                                                                                                              |
+| `slippageTolerance`    | string  | No       | Slippage in basis points (e.g., "50" for 0.5%)                                                                                                                                    |
+| `useExternalLiquidity` | boolean | No       | Use canonical\+ bridging for more liquidity                                                                                                                                       |
+| `referrer`             | string  | No       | Identifier that can be used to monitor transactions from a specific source.                                                                                                       |
+| `refundTo`             | string  | No       | Address to send the refund to in the case of failure, if not specified the user address is used                                                                                   |
+| `topupGas`             | boolean | No       | If set, the destination fill will include a gas topup to the recipient (only supported for EVM chains if the requested currency is not the gas currency on the destination chain) |
+| `topupGasAmount`       | string  | No       | The destination gas topup amount in USD decimal format, e.g 100000 = \$1. topupGas is required to be enabled. Defaults to 2000000 (\$2)                                           |
 
 ### Trade Types Explained
 
