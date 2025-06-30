@@ -700,25 +700,25 @@ Monetize your cross-chain calling integration:
 
 ## Preflight Checklist
 
-☐ **Contract compatibility** - Ensure your smart contract follows Relay compatibility guidelines\\
+☐ **Contract compatibility** - Ensure your smart contract follows Relay compatibility guidelines
 
-☐ **ERC20 approvals** - Include approval transactions before any ERC20 spending calls\\
+☐ **ERC20 approvals** - Include approval transactions before any ERC20 spending calls
 
-☐ **Verify transaction data** - Confirm `amount` equals the sum of all `txs[].value` fields\\
+☐ **Verify transaction data** - Confirm `amount` equals the sum of all `txs[].value` fields
 
-☐ **Check tradeType** - Must be set to `"EXACT_OUTPUT"` for cross-chain calls\\
+☐ **Check tradeType** - Must be set to `"EXACT_OUTPUT"` for cross-chain calls
 
-☐ **Validate call data** - Ensure contract function calls are properly encoded\\
+☐ **Validate call data** - Ensure contract function calls are properly encoded
 
-☐ **Token addresses** - Use correct ERC20 contract addresses for each chain\\
+☐ **Token addresses** - Use correct ERC20 contract addresses for each chain
 
-☐ **Test contract calls** - Verify contract functions work as expected on destination chain\\
+☐ **Test contract calls** - Verify contract functions work as expected on destination chain
 
-☐ **Balance verification** - Confirm user has sufficient funds for amount \+ fees\\
+☐ **Balance verification** - Confirm user has sufficient funds for amount \+ fees
 
-☐ **Error handling** - Implement proper error handling for failed contract executions\\
+☐ **Error handling** - Implement proper error handling for failed contract executions
 
-☐ **Monitor progress** - Use status endpoints to track execution progress\\
+☐ **Monitor progress** - Use status endpoints to track execution progress
 
 ☐ **Gas estimation** - Account for potential gas usage variations in contract calls
 

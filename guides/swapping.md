@@ -415,52 +415,6 @@ const checkSwapStatus = async (requestId) => {
 
 ## Advanced Swapping Features
 
-### Price Impact Analysis
-
-Before executing swaps, analyze price impact to protect users:
-
-<CodeGroup>
-
-```javascript JavaScript
-function analyzeSwapQuote(swapQuote) {
-  const impact = calculatePriceImpact(swapQuote);
-  const rate = parseFloat(swapQuote.details.rate);
-  
-  console.log(`Exchange rate: 1 ${swapQuote.details.currencyIn.currency.symbol} = ${rate} ${swapQuote.details.currencyOut.currency.symbol}`);
-  console.log(`Total impact: ${impact.totalImpactPercent.toFixed(2)}%`);
-  console.log(`Swap impact: ${impact.swapImpactPercent.toFixed(2)}%`);
-  
-  if (impact.isHighImpact) {
-    console.warn('⚠️ High price impact detected! Consider reducing swap size.');
-    return { proceed: false, reason: 'High price impact' };
-  }
-  
-  return { proceed: true };
-}
-```
-
-
-```python Python
-def analyze_swap_quote(swap_quote):
-    impact = calculate_price_impact(swap_quote)
-    rate = float(swap_quote['details']['rate'])
-    
-    currency_in = swap_quote['details']['currencyIn']['currency']['symbol']
-    currency_out = swap_quote['details']['currencyOut']['currency']['symbol']
-    
-    print(f"Exchange rate: 1 {currency_in} = {rate} {currency_out}")
-    print(f"Total impact: {impact['total_impact_percent']:.2f}%")
-    print(f"Swap impact: {impact['swap_impact_percent']:.2f}%")
-    
-    if impact['is_high_impact']:
-        print('⚠️ High price impact detected! Consider reducing swap size.')
-        return {'proceed': False, 'reason': 'High price impact'}
-    
-    return {'proceed': True}
-```
-
-</CodeGroup>
-
 ### Custom Slippage Protection
 
 Set custom slippage tolerance for volatile market conditions:
