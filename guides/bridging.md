@@ -33,8 +33,8 @@ curl -X POST "https://api.relay.link/quote" \
     "user": "0x742d35Cc6634C0532925a3b8D9d4DB0a2D7DD5B3",
     "originChainId": 1,
     "destinationChainId": 8453,
-    "originCurrency": "eth",
-    "destinationCurrency": "eth",
+    "originCurrency": "0x0000000000000000000000000000000000000000",
+    "destinationCurrency": "0x0000000000000000000000000000000000000000",
     "amount": "100000000000000000",
     "tradeType": "EXACT_INPUT"
   }'
@@ -51,8 +51,8 @@ const response = await fetch('https://api.relay.link/quote', {
     user: '0x742d35Cc6634C0532925a3b8D9d4DB0a2D7DD5B3',
     originChainId: 1,
     destinationChainId: 8453,
-    originCurrency: 'eth',
-    destinationCurrency: 'eth',
+    originCurrency: '0x0000000000000000000000000000000000000000',
+    destinationCurrency: '0x0000000000000000000000000000000000000000',
     amount: '100000000000000000', // 0.1 ETH in wei
     tradeType: 'EXACT_INPUT'
   })
@@ -69,8 +69,8 @@ response = requests.post('https://api.relay.link/quote', json={
     'user': '0x742d35Cc6634C0532925a3b8D9d4DB0a2D7DD5B3',
     'originChainId': 1,
     'destinationChainId': 8453,
-    'originCurrency': 'eth',
-    'destinationCurrency': 'eth',
+    'originCurrency': '0x0000000000000000000000000000000000000000',
+    'destinationCurrency': '0x0000000000000000000000000000000000000000',
     'amount': '100000000000000000',  # 0.1 ETH in wei
     'tradeType': 'EXACT_INPUT'
 })
@@ -155,8 +155,8 @@ The quote response contains all information needed to execute the bridge:
 | `user`                 | string  | Yes      | Address that will deposit funds and submit transactions                                                                                                                           |
 | `originChainId`        | number  | Yes      | Source chain ID (e.g., 1 for Ethereum)                                                                                                                                            |
 | `destinationChainId`   | number  | Yes      | Destination chain ID (e.g., 8453 for Base)                                                                                                                                        |
-| `originCurrency`       | string  | Yes      | Currency ID on source chain (e.g., "eth", "usdc")                                                                                                                                 |
-| `destinationCurrency`  | string  | Yes      | Currency ID on destination chain                                                                                                                                                  |
+| `originCurrency`       | string  | Yes      | Currency contract on source chain (e.g., "0x0000000000000000000000000000000000000000", "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913")                                              |
+| `destinationCurrency`  | string  | Yes      | Currency contract on destination chain                                                                                                                                            |
 | `amount`               | string  | Yes      | Amount in wei/smallest unit                                                                                                                                                       |
 | `tradeType`            | string  | Yes      | "EXACT_INPUT" or "EXACT_OUTPUT"                                                                                                                                                   |
 | `recipient`            | string  | No       | Recipient address (defaults to user)                                                                                                                                              |

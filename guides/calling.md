@@ -37,8 +37,8 @@ curl -X POST "https://api.relay.link/quote" \
     "user": "0x742d35Cc6634C0532925a3b8D9d4DB0a2D7DD5B3",
     "originChainId": 1,
     "destinationChainId": 8453,
-    "originCurrency": "eth",
-    "destinationCurrency": "eth",
+    "originCurrency": "0x0000000000000000000000000000000000000000",
+    "destinationCurrency": "0x0000000000000000000000000000000000000000",
     "amount": "100000000000000000",
     "tradeType": "EXACT_OUTPUT",
     "txs": [
@@ -62,8 +62,8 @@ const response = await fetch('https://api.relay.link/quote', {
     user: '0x742d35Cc6634C0532925a3b8D9d4DB0a2D7DD5B3',
     originChainId: 1,
     destinationChainId: 8453,
-    originCurrency: 'eth',
-    destinationCurrency: 'eth',
+    originCurrency: '0x0000000000000000000000000000000000000000',
+    destinationCurrency: '0x0000000000000000000000000000000000000000',
     amount: '100000000000000000', // Total value of all txs
     tradeType: 'EXACT_OUTPUT', // Required for cross-chain calls
     txs: [
@@ -87,8 +87,8 @@ response = requests.post('https://api.relay.link/quote', json={
     'user': '0x742d35Cc6634C0532925a3b8D9d4DB0a2D7DD5B3',
     'originChainId': 1,
     'destinationChainId': 8453,
-    'originCurrency': 'eth',
-    'destinationCurrency': 'eth',
+    'originCurrency': '0x0000000000000000000000000000000000000000',
+    'destinationCurrency': '0x0000000000000000000000000000000000000000',
     'amount': '100000000000000000',  # Total value of all txs
     'tradeType': 'EXACT_OUTPUT',  # Required for cross-chain calls
     'txs': [
@@ -445,22 +445,22 @@ quote_request = {
 
 ### Quote Parameters for Cross-Chain Calls
 
-| Parameter             | Type   | Required | Description                                                                                     |
-| --------------------- | ------ | -------- | ----------------------------------------------------------------------------------------------- |
-| `user`                | string | Yes      | Address that will pay for the transaction                                                       |
-| `originChainId`       | number | Yes      | Chain ID where payment originates                                                               |
-| `destinationChainId`  | number | Yes      | Chain ID where contract calls execute                                                           |
-| `originCurrency`      | string | Yes      | Payment currency on origin chain                                                                |
-| `destinationCurrency` | string | Yes      | Currency on destination chain                                                                   |
-| `amount`              | string | Yes      | **Total value of all txs combined**                                                             |
-| `tradeType`           | string | Yes      | **Must be "EXACT_OUTPUT"**                                                                      |
-| `txs`                 | array  | Yes      | Array of transaction objects                                                                    |
-| `txs[].to`            | string | Yes      | Contract address to call                                                                        |
-| `txs[].value`         | string | Yes      | ETH value to send with call                                                                     |
-| `txs[].data`          | string | Yes      | Encoded function call data                                                                      |
-| `recipient`           | string | No       | Alternative recipient for any surplus                                                           |
-| `referrer`            | string | No       | Identifier that can be used to monitor transactions from a specific source.                     |
-| `refundTo`            | string | No       | Address to send the refund to in the case of failure, if not specified the user address is used |
+| Parameter             | Type   | Required | Description                                                                                                                          |
+| --------------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `user`                | string | Yes      | Address that will pay for the transaction                                                                                            |
+| `originChainId`       | number | Yes      | Chain ID where payment originates                                                                                                    |
+| `destinationChainId`  | number | Yes      | Chain ID where contract calls execute                                                                                                |
+| `originCurrency`      | string | Yes      | Currency contract on source chain (e.g., "0x0000000000000000000000000000000000000000", "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913") |
+| `destinationCurrency` | string | Yes      | Currency contract on destination chain                                                                                               |
+| `amount`              | string | Yes      | **Total value of all txs combined**                                                                                                  |
+| `tradeType`           | string | Yes      | **Must be "EXACT_OUTPUT"**                                                                                                           |
+| `txs`                 | array  | Yes      | Array of transaction objects                                                                                                         |
+| `txs[].to`            | string | Yes      | Contract address to call                                                                                                             |
+| `txs[].value`         | string | Yes      | ETH value to send with call                                                                                                          |
+| `txs[].data`          | string | Yes      | Encoded function call data                                                                                                           |
+| `recipient`           | string | No       | Alternative recipient for any surplus                                                                                                |
+| `referrer`            | string | No       | Identifier that can be used to monitor transactions from a specific source.                                                          |
+| `refundTo`            | string | No       | Address to send the refund to in the case of failure, if not specified the user address is used                                      |
 
 ## Execute the Call
 

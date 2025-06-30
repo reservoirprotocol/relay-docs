@@ -20,7 +20,7 @@ description: "How to implement cross-chain token swaps"
 
 ## Get a Quote
 
-To swap tokens across chains, you need to specify the source and destination chains, currencies, and the amount to swap. Use the `/execute/swap` endpoint to get comprehensive swap quotes that include optimal routing and fee calculations.
+To swap tokens across chains, you need to specify the source and destination chains, currencies, and the amount to swap. Use the `/quote` endpoint to get comprehensive swap quotes that include optimal routing and fee calculations.
 
 ### Basic Cross-Chain Swap Quote
 
@@ -184,8 +184,8 @@ The swap response contains detailed information about the exchange rates, fees, 
 | `user`                 | string  | Yes      | Address that will initiate the swap                                                                                                                                               |
 | `originChainId`        | number  | Yes      | Source chain ID (e.g., 1 for Ethereum)                                                                                                                                            |
 | `destinationChainId`   | number  | Yes      | Destination chain ID (e.g., 8453 for Base)                                                                                                                                        |
-| `originCurrency`       | string  | Yes      | Input currency ID (e.g., "eth", "usdc")                                                                                                                                           |
-| `destinationCurrency`  | string  | Yes      | Output currency ID                                                                                                                                                                |
+| `originCurrency`       | string  | Yes      | Currency contract on source chain (e.g., "0x0000000000000000000000000000000000000000", "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913")                                              |
+| `destinationCurrency`  | string  | Yes      | Currency contract on destination chain                                                                                                                                            |
 | `amount`               | string  | Yes      | Amount in wei/smallest unit                                                                                                                                                       |
 | `tradeType`            | string  | Yes      | "EXACT_INPUT", "EXACT_OUTPUT", or "EXPECTED_OUTPUT"                                                                                                                               |
 | `recipient`            | string  | No       | Recipient address (defaults to user)                                                                                                                                              |
