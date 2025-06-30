@@ -312,12 +312,13 @@ const checkStatus = async (requestId) => {
 
 ### Status Values
 
-| Status    | Description                        |
-| --------- | ---------------------------------- |
-| `pending` | Bridge is being processed          |
-| `success` | Bridge completed successfully      |
-| `failure` | Bridge failed                      |
-| `refund`  | Funds were refunded due to failure |
+| Status    | Description                                     |
+| --------- | ----------------------------------------------- |
+| `waiting` | Deposit tx for the request is yet to be indexed |
+| `pending` | Deposit tx was indexed, now the fill is pending |
+| `success` | Relay completed successfully                    |
+| `failure` | Relay failed                                    |
+| `refund`  | Funds were refunded due to failure              |
 
 ## Advanced Features
 

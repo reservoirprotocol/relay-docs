@@ -413,6 +413,16 @@ const checkSwapStatus = async (requestId) => {
 
 </CodeGroup>
 
+### Status Values
+
+| Status    | Description                                     |
+| :-------- | :---------------------------------------------- |
+| `waiting` | Deposit tx for the request is yet to be indexed |
+| `pending` | Deposit tx was indexed, now the fill is pending |
+| `success` | Relay completed successfully                    |
+| `failure` | Relay failed                                    |
+| `refund`  | Funds were refunded due to failure              |
+
 ## Advanced Swapping Features
 
 ### Custom Slippage Protection
