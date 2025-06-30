@@ -362,12 +362,12 @@ Control slippage tolerance for your bridges:
 
 ## Preflight Checklist
 
-☐ **Verify user balance** - Ensure the user has sufficient funds for the bridge amount plus fees\\
+☐ **Verify user balance** - Ensure the user has sufficient funds for the bridge amount plus fees
 
-☐ **Check chain support** - Confirm both origin and destination chains are supported\\
+☐ **Check chain support** - Confirm both origin and destination chains are supported
 
-☐ **Validate quote** - Quotes expire after 30 seconds, so fetch fresh quotes before execution\\
+☐ **Validate quote** - Quotes expire after 30 seconds, so fetch fresh quotes before execution
 
-☐ **Handle errors** - Implement proper error handling for API requests and transaction failures\\
+☐ **Handle errors** - Implement proper error handling for API requests and transaction failures
 
-☐ **Monitor progress** - Use the status endpoints to track bridge completion\\
+☐ **Monitor progress** - Use the status endpoints to track bridge completion
