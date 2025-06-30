@@ -502,27 +502,16 @@ Monetize your swap integration with app fees:
 
 ## Preflight Checklist
 
-☐ **Currency support** - Verify both currencies are supported on their respective chains\\
+☐ **Currency support** - Verify both currencies are supported on their respective chains
 
-☐ **Balance validation** - Ensure user has sufficient balance for swap amount \+ fees\\
+☐ **Balance validation** - Ensure user has sufficient balance for swap amount \+ fees
 
-☐ **Price impact check** - Analyze swap impact and warn users of high slippage\\
+☐ **Price impact check** - Analyze swap impact and warn users of high slippage
 
-☐ **Slippage tolerance** - Set appropriate slippage for market conditions\\
+☐ **Slippage tolerance** - Set appropriate slippage for market conditions
 
-☐ **Rate validation** - Compare rates with other sources to ensure competitiveness\\
+☐ **Rate validation** - Compare rates with other sources to ensure competitiveness
 
-☐ **Error handling** - Implement robust error handling for failed swaps\\
+☐ **Error handling** - Implement robust error handling for failed swaps
 
-☐ **Progress monitoring** - Track swap status and provide user feedback\\
-
-☐ **Market conditions** - Consider current market volatility when setting parameters\\
-
-☐ **Gas optimization** - Monitor gas costs and suggest optimal timing
-
-## API Base URLs
-
-- **Mainnet**: `https://api.relay.link`
-- **Testnet**: `https://api.testnets.relay.link`
-
-Cross-chain swapping enables users to seamlessly exchange tokens across different blockchains while maintaining optimal pricing and minimal friction.
+☐ **Progress monitoring** - Track swap status and provide user feedback

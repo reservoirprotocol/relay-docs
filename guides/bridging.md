@@ -371,12 +371,3 @@ Control slippage tolerance for your bridges:
 ☐ **Handle errors** - Implement proper error handling for API requests and transaction failures\\
 
 ☐ **Monitor progress** - Use the status endpoints to track bridge completion\\
-
-☐ **Test thoroughly** - Test with small amounts first, use testnet API for development
-
-## API Base URLs
-
-- **Mainnet**: `https://api.relay.link`
-- **Testnet**: `https://api.testnets.relay.link`
-
-Use the testnet API during development to avoid mainnet fees and risks.
