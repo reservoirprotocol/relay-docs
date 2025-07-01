@@ -423,28 +423,11 @@ const checkSwapStatus = async (requestId) => {
 | `failure` | Relay failed                                    |
 | `refund`  | Funds were refunded due to failure              |
 
-## Advanced Swapping Features
+## Advanced  Features
 
-### Custom Slippage Protection
+### App Fees
 
-Set custom slippage tolerance for volatile market conditions:
-
-```json
-{
-  "user": "0x742d35Cc6634C0532925a3b8D9d4DB0a2D7DD5B3",
-  "originChainId": 1,
-  "destinationChainId": 8453,
-  "originCurrency": "eth",
-  "destinationCurrency": "usdc",
-  "amount": "100000000000000000",
-  "tradeType": "EXACT_INPUT",
-  "slippageTolerance": "100"
-}
-```
-
-### App Fee Integration
-
-Monetize your swap integration with app fees:
+You can include app fees in your swap requests to monetize your integration:
 
 ```json
 {
@@ -461,6 +444,23 @@ Monetize your swap integration with app fees:
       "fee": "25"
     }
   ]
+}
+```
+
+### Custom Slippage
+
+Control slippage tolerance for your swaps:
+
+```json
+{
+  "user": "0x742d35Cc6634C0532925a3b8D9d4DB0a2D7DD5B3",
+  "originChainId": 1,
+  "destinationChainId": 8453,
+  "originCurrency": "eth",
+  "destinationCurrency": "usdc",
+  "amount": "100000000000000000",
+  "tradeType": "EXACT_INPUT",
+  "slippageTolerance": "100"
 }
 ```
 

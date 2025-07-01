@@ -677,11 +677,11 @@ const checkCallStatus = async (requestId) => {
 | `failure` | Relay failed                                    |
 | `refund`  | Funds were refunded due to failure              |
 
-## Advanced Cross-Chain Calling
+## Advanced  Features
 
-### Contract Call with App Fees
+### App Fees
 
-Monetize your cross-chain calling integration:
+You can include app fees in your call requests to monetize your integration:
 
 ```json
 {
@@ -705,6 +705,30 @@ Monetize your cross-chain calling integration:
       "fee": "50"
     }
   ]
+}
+```
+
+### Custom Slippage
+
+Control slippage tolerance for your calls:
+
+```json
+{
+  "user": "0x742d35Cc6634C0532925a3b8D9d4DB0a2D7DD5B3",
+  "originChainId": 1,
+  "destinationChainId": 8453,
+  "originCurrency": "eth",
+  "destinationCurrency": "eth",
+  "amount": "100000000000000000",
+  "tradeType": "EXACT_OUTPUT",
+  "txs": [
+    {
+      "to": "0xContractAddress",
+      "value": "100000000000000000",
+      "data": "0x40c10f19..."
+    }
+  ],
+  "slippageTolerance": "50"  // 0.5% slippage tolerance
 }
 ```
 
