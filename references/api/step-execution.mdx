@@ -1,36 +1,41 @@
 ---
-title: Step Execution Overview
+title: "Step Execution Overview"
 ---
 
-<Tip>Tip: For advanced integrations, we recommend using Relay APIs. For simpler use cases, the [Relay SDK](/references/sdk/getting-started) automates steps and provides helpful callbacks, reducing manual effort.</Tip>
+<Tip>
+  Tip: For advanced integrations, we recommend using Relay APIs. For simpler use cases, the [Relay SDK](/references/sdk/getting-started) automates steps and provides helpful callbacks, reducing manual effort.
+</Tip>
 
 ## Step Execution using the API
+
 When executing orders using the API directly, there are often multiple steps, like submitting a deposit transaction to the solver or signing a message. These steps differ based on the desired action and best route to execute the action. To make this simple, you can use the [quote endpoint](/references/api/get-quote), which return the exact steps that you need to follow, including descriptions that you can display to users.
 
 The flow looks like this:
 
 <Steps>
-    <Step title="Fetching Steps" icon="server">
-        Call the [Get Quote API](/references/api/get-quote) to start your execution.
-    </Step>
-    <Step title="Iterate Through Steps" icon="list-ul">
-        Iterate through the steps and the items within a step, taking the necessary actions. Steps with no items, or an empty array of items, should be skipped. If step item data is missing then polling the api is necessary.
-    </Step>
-    <Step title="Executing Steps" icon="list-check">
-        As mentioned above each step contains an array of one or more items. These items need to be iterated and completed depending on the kind of step ([signature](#signature-step) or [transaction](#transaction-step)).
-    </Step>
-    <Step title="Checking the fill status" icon="bars-progress">
-        After a step is signed or submitted you should check on the progress of the fill
-    </Step>
-    <Step title="Success!" icon="circle-check">
-        Once all the steps are complete you can consider the action complete and notify the user.
-    </Step>
+  <Step title="Fetching Steps" icon="server">
+    Call the [Get Quote API](/references/api/get-quote) to start your execution.
+  </Step>
+  <Step title="Iterate Through Steps" icon="list-ul">
+    Iterate through the steps and the items within a step, taking the necessary actions. Steps with no items, or an empty array of items, should be skipped. If step item data is missing then polling the api is necessary.
+  </Step>
+  <Step title="Executing Steps" icon="list-check">
+    As mentioned above each step contains an array of one or more items. These items need to be iterated and completed depending on the kind of step ([signature](#signature-step) or [transaction](#transaction-step)).
+  </Step>
+  <Step title="Checking the fill status" icon="bars-progress">
+    After a step is signed or submitted you should check on the progress of the fill
+  </Step>
+  <Step title="Success!" icon="circle-check">
+    Once all the steps are complete you can consider the action complete and notify the user.
+  </Step>
 </Steps>
 
 ### Signature Step
+
 A message that needs to be signed. Every signature comes with sign data and post data. The first action we need to take is to sign the message, keep in mind the signatureKind and use the appropriate signing method. Refer to your crypto library of choice on how to sign (viem, web3, etc).
 
 <CodeGroup>
+
 ```javascript Signing EIP191
 // Creating an `EIP-191` signature involves signing a message. 
 // When you receive a `signatureKind: "eip191"` from the API, you will sign the value associated with the `message` property. 
@@ -43,6 +48,8 @@ const message = {
 
 const eip191Message = "\x19Ethereum Signed Message:\n" + message.message.length + message.message;
 ```
+
+
 ```javascript Signing EIP712
 //Creating an EIP-712 signature involves signing a structured object composed of a domain, types, and values.
 //When receiving a signatureKind: "eip712" from the API, you'll need to structure the signature in eth_signTypedData_v4 format. 
@@ -186,6 +193,7 @@ const data = {
         "primaryType": "OrderComponents"
     }
 ```
+
 </CodeGroup>
 
 **Posting the data**
@@ -195,8 +203,8 @@ After the message is signed the second action is to submit the `post` body to th
 The design pattern of this API is completely generic, allowing for automatic support of new types of liquidity without needing to update the app. This data can be fed directly into an Ethereum library such as viem, making it easy to sign and submit the exact data that is needed.
 
 ### Transaction Step
-A transaction that needs to be submitted onchain. After the transaction is submitted onchain you can poll the step items `check` endpoint. The endpoint will return a status which when successful will return 'success'. The step item can then be successfully marked as complete. _Note that the transaction step item contains a `chainId` for which the transaction should be submitted on._
 
+A transaction that needs to be submitted onchain. After the transaction is submitted onchain you can poll the step items `check` endpoint. The endpoint will return a status which when successful will return 'success'. The step item can then be successfully marked as complete. _`Note that the transaction step item contains a chainId for which the transaction should be submitted on.`_
 
 ### Steps Example
 
@@ -253,6 +261,7 @@ Below is an example of steps you'll encounter in the wild when working with the 
 Along with the steps you'll see that the following objects are returned: fees, breakdown and balances. Information about fees is detailed [here](/how-it-works/fees). Breakdown pertains to time estimation for the execution, broken down by value. The balances object is in regards to the user and how much they require to solve for the execution.
 
 ### Checking the fill status
+
 Along with the step data there's an optional check object. You can use this object to check if the status of the transaction is complete. The object details the method and the endpoint to request. You should poll this until the endpoint returns `success`.
 
 ```json
@@ -266,17 +275,15 @@ Along with the step data there's an optional check object. You can use this obje
 
 The check api will always return a status, the expected statuses are as follows:
 
-| Status   | Description |
-|----------|-------------|
-| refund   | Execution was refunded on the origin chain unless `refundOrigin` parameter is set to false, in which case the refund is made on the destination chain |
-| delayed  | If the time pending is 2x the p50 fill time, we mark the request as delayed |
-| waiting  | Waiting for a deposit |
-| failure  | The fill has failed and was not refundable, check the details property for more information on the failure |
-| pending  | Fill is currently pending |
-| success  | Fill was successfully processed |
+| Status    | Description                                     |
+| --------- | ----------------------------------------------- |
+| `waiting` | Deposit tx for the request is yet to be indexed |
+| `pending` | Deposit tx was indexed, now the fill is pending |
+| `success` | Relay completed successfully                    |
+| `failure` | Relay failed, attempting to refund              |
+| `refund`  | Funds were refunded due to failure              |
 
 ---
-
 
 ### SDK Reference
 

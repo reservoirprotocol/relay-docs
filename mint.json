@@ -66,7 +66,6 @@
         "guides/swapping",
         "guides/calling",
         "guides/solana",
-        "guides/quote-errors",
         "guides/testnet",
         {
           "group": "Smart Accounts",
