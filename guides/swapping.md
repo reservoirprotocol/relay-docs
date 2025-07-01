@@ -20,7 +20,7 @@ description: "How to implement cross-chain token swaps"
 
 ## Get a Quote
 
-To swap tokens across chains, you need to specify the source and destination chains, currencies, and the amount to swap. Use the `/quote` endpoint to get comprehensive swap quotes that include optimal routing and fee calculations.
+To swap tokens across chains, you need to specify the source and destination chains, currencies, and the amount to swap. Use the [quote endpoint](/references/api/get-quote) to get comprehensive swap quotes that include optimal routing and fee calculations.
 
 ### Basic Cross-Chain Swap Quote
 

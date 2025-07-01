@@ -20,7 +20,7 @@ description: "How to implement token bridging"
 
 ## Get a Quote
 
-To bridge assets, you first need to get a quote that provides all necessary information including fees, transaction data, and execution steps. Use the `/quote` endpoint to request bridging information.
+To bridge assets, you first need to get a quote that provides all necessary information including fees, transaction data, and execution steps. Use the [quote endpoint](/references/api/get-quote) to request bridging information.
 
 ### Basic Quote Request
 
