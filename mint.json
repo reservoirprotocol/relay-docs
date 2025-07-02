@@ -126,7 +126,7 @@
         "references/api/swap-multi-input",
         "references/api/transactions-index",
         "references/api/transactions-single",
-        
+        "references/api/claim-app-fees",
         {
           "group": "Deprecated",
           "pages": [
