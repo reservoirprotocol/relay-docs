@@ -120,11 +120,13 @@
         "references/api/get-intents-status-v2",
         "references/api/get-requests",
         "references/api/get-token-price",
+        "references/api/get-app-fee-balances",
         "references/api/get-currencies-v2",
         "references/api/get-quote",
         "references/api/swap-multi-input",
         "references/api/transactions-index",
         "references/api/transactions-single",
+        
         {
           "group": "Deprecated",
           "pages": [
@@ -147,9 +149,10 @@
         {
           "group": "Actions",
           "pages": [
-            "references/sdk/actions/getSolverCapacity",
             "references/sdk/actions/getQuote",
-            "references/sdk/actions/execute"
+            "references/sdk/actions/execute",
+            "references/sdk/actions/getAppFees",
+            "references/sdk/actions/claimAppFees"
           ]
         },
         "references/sdk/adapters",
