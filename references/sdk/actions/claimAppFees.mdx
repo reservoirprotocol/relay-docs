@@ -1,0 +1,36 @@
+---
+title: claimAppFees
+description: Claim app fees for a wallet
+---
+
+[What are app fees?](/how-it-works/fees#what-are-app-fees)
+
+### Parameters
+
+| Property      | Description                                                                 | Required |
+|---------------|-----------------------------------------------------------------------------|----------|
+| **wallet**    | A valid WalletClient from viem or an adapted wallet generated from an adapter that meets this [interface](https://github.com/reservoirprotocol/relay-sdk/blob/main/packages/sdk/src/types/AdaptedWallet.ts).          | ✅       |
+| **chainId**   | Chain ID to claim fees on                                                   | ✅       |
+| **currency**  | Token address to claim                                     | ✅       |
+| **recipient** | Address to receive claimed fees (defaults to wallet address)     | ❌       |
+| **onProgress**| Callback to update UI state as execution progresses. Can also be used to get the transaction hash for a given step item. The following data points are returned: `steps`, `fees`, `breakdown`, `txHashes`, `currentStep`, `currentStepItem`, `details`                    | ❌       |
+
+### Example
+
+```typescript
+import { getClient } from "@reservoir0x/relay-sdk";
+import { useWalletClient } from "wagmi";
+
+const { data: wallet } = useWalletClient();
+
+const { data } = await getClient().actions.claimAppFees({
+  wallet,
+  chainId: 8453, // Base
+  currency: "0x0000000000000000000000000000000000000000", // ETH
+  recipient: "0x...", // Optional
+  onProgress: ({steps, fees, breakdown, currentStep, currentStepItem, txHashes, details}) => {
+    // custom handling
+  },
+});
+```
+
