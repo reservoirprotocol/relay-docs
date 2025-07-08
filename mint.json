@@ -42,8 +42,8 @@
       "url": "references/relay-kit"
     },
     {
-      "name": "Relay Protocol",
-      "url": "references/protocol"
+      "name": "Relay Vaults",
+      "url": "references/vaults"
     }
   ],
   "navigation": [
@@ -65,6 +65,7 @@
         "guides/bridging",
         "guides/swapping",
         "guides/calling",
+        "guides/transaction-indexing",
         "guides/solana",
         "guides/testnet",
         {
@@ -119,13 +120,11 @@
         "references/api/get-intents-status-v2",
         "references/api/get-requests",
         "references/api/get-token-price",
-        "references/api/get-app-fee-balances",
         "references/api/get-currencies-v2",
         "references/api/get-quote",
         "references/api/swap-multi-input",
         "references/api/transactions-index",
         "references/api/transactions-single",
-        "references/api/claim-app-fees",
         {
           "group": "Deprecated",
           "pages": [
@@ -148,10 +147,9 @@
         {
           "group": "Actions",
           "pages": [
+            "references/sdk/actions/getSolverCapacity",
             "references/sdk/actions/getQuote",
-            "references/sdk/actions/execute",
-            "references/sdk/actions/getAppFees",
-            "references/sdk/actions/claimAppFees"
+            "references/sdk/actions/execute"
           ]
         },
         "references/sdk/adapters",
@@ -186,33 +184,27 @@
       ]
     },
     {
-      "group": "Relay Protocol",
+      "group": "Vaults",
       "pages": [
-        "references/protocol/overview",
+        "references/vaults/overview",
+        "references/vaults/architecture",
+        "references/vaults/security",
+        "references/vaults/backend",
         {
-          "group": "Vaults",
+          "group": "Guides",
           "pages": [
-            "references/protocol/vaults/overview",
-            "references/protocol/vaults/architecture",
-            "references/protocol/vaults/security",
-            "references/protocol/vaults/backend",
-            {
-              "group": "Guides",
-              "pages": [
-                "references/protocol/vaults/guides/bridging",
-                "references/protocol/vaults/guides/interacting"
-              ]
-            },
-            {
-              "group": "Contracts Reference",
-              "pages": [
-                "references/protocol/vaults/contracts/RelayPoolFactory",
-                "references/protocol/vaults/contracts/RelayPool",
-                "references/protocol/vaults/contracts/RelayPoolNativeGateway",
-                "references/protocol/vaults/contracts/RelayBridgeFactory",
-                "references/protocol/vaults/contracts/RelayBridge"
-              ]
-            }
+            "references/vaults/guides/bridging",
+            "references/vaults/guides/interacting"
+          ]
+        },
+        {
+          "group": "Contracts Reference",
+          "pages": [
+            "references/vaults/contracts/RelayPoolFactory",
+            "references/vaults/contracts/RelayPool",
+            "references/vaults/contracts/RelayPoolNativeGateway",
+            "references/vaults/contracts/RelayBridgeFactory",
+            "references/vaults/contracts/RelayBridge"
           ]
         }
       ]
