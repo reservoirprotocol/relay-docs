@@ -190,7 +190,8 @@
           "group": "Depository",
           "pages": [
             "references/protocol/depository/overview",
-            "references/protocol/depository/architecture"
+            "references/protocol/depository/architecture",
+            "references/protocol/depository/security"
           ]
         },
         {
