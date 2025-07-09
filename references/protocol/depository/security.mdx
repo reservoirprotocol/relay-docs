@@ -1,0 +1,9 @@
+## Threat model
+
+The Depository contract is receiving from users and an `allocator` can sign messages authorizing the withdrawal of funds from the depository. As such the `allocator` itself has to be trusted to only sign messages if the user's intent was successfuly filled.
+
+The contract is **not** upgradable, meaning that once deployed, the code cannot be changed.
+
+## Audits
+
+The Relay Vault contracts have been audited by [Certora](https://www.certora.com/) and you can find the [audit reports](./relay-escrow-report-certora.pdf).
