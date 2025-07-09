@@ -42,8 +42,8 @@
       "url": "references/relay-kit"
     },
     {
-      "name": "Relay Vaults",
-      "url": "references/vaults"
+      "name": "Relay Protocol",
+      "url": "references/protocol"
     }
   ],
   "navigation": [
@@ -184,27 +184,33 @@
       ]
     },
     {
-      "group": "Vaults",
+      "group": "Relay Protocol",
       "pages": [
-        "references/vaults/overview",
-        "references/vaults/architecture",
-        "references/vaults/security",
-        "references/vaults/backend",
+        "references/protocol/overview",
         {
-          "group": "Guides",
+          "group": "Vaults",
           "pages": [
-            "references/vaults/guides/bridging",
-            "references/vaults/guides/interacting"
-          ]
-        },
-        {
-          "group": "Contracts Reference",
-          "pages": [
-            "references/vaults/contracts/RelayPoolFactory",
-            "references/vaults/contracts/RelayPool",
-            "references/vaults/contracts/RelayPoolNativeGateway",
-            "references/vaults/contracts/RelayBridgeFactory",
-            "references/vaults/contracts/RelayBridge"
+            "references/protocol/vaults/overview",
+            "references/protocol/vaults/architecture",
+            "references/protocol/vaults/security",
+            "references/protocol/vaults/backend",
+            {
+              "group": "Guides",
+              "pages": [
+                "references/protocol/vaults/guides/bridging",
+                "references/protocol/vaults/guides/interacting"
+              ]
+            },
+            {
+              "group": "Contracts Reference",
+              "pages": [
+                "references/protocol/vaults/contracts/RelayPoolFactory",
+                "references/protocol/vaults/contracts/RelayPool",
+                "references/protocol/vaults/contracts/RelayPoolNativeGateway",
+                "references/protocol/vaults/contracts/RelayBridgeFactory",
+                "references/protocol/vaults/contracts/RelayBridge"
+              ]
+            }
           ]
         }
       ]
