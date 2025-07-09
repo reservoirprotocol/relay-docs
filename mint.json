@@ -147,7 +147,6 @@
         {
           "group": "Actions",
           "pages": [
-            "references/sdk/actions/getSolverCapacity",
             "references/sdk/actions/getQuote",
             "references/sdk/actions/execute"
           ]
@@ -187,6 +186,27 @@
       "group": "Relay Protocol",
       "pages": [
         "references/protocol/overview",
+        {
+          "group": "Depository",
+          "pages": [
+            "references/protocol/depository/overview",
+            "references/protocol/depository/architecture"
+          ]
+        },
+        {
+          "group": "Oracle",
+          "pages": [
+            "references/protocol/oracle/overview",
+            "references/protocol/oracle/architecture"
+          ]
+        },
+        {
+          "group": "Hub",
+          "pages": [
+            "references/protocol/hub/overview",
+            "references/protocol/hub/architecture"
+          ]
+        },
         {
           "group": "Vaults",
           "pages": [
