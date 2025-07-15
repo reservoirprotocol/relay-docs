@@ -3,7 +3,7 @@ title: What is Relay?
 description: "The fastest and cheapest way to bridge & transact across chains"
 ---
 
-Relay is a cross-chain payments system that enables instant, low-cost bridging and cross-chain execution. It works by connecting users with relayers - financial agents that act on users' behalfs across chains in exchange for a small fee. Relay is designed to minimize gas costs and execution latency, making it ideal for price-sensitive applications, such as payments, bridging, nft minting and gas abstraction.
+Relay is a multichain payments protocol that enables instant, low-cost bridging, swapping, and cross-chain execution. It works using Relayers who execute cross-chain transactions in exchange for a small fee. Relay is designed to minimize gas costs and execution latency, making it ideal for price-sensitive applications, such as payments, bridging, nft minting and gas abstraction.
 
 It features the following key properties:
 
@@ -13,9 +13,9 @@ It features the following key properties:
 
 ## How does it work?
 
-Relay is powered by relayers. When a user wishes to bridge, they receive a quote from a relayer. They then accept the quote and submit a transfer to the relayer, who validates the order and sends the funds to the user on the destination chain. Relayers maintains a balance on all chains in order to make executions, and then periodically rebalance to ensure there is sufficient liquidity on all chains. Direct transfers are safe to send relayers because relayers post bonds in escrow that users may access in the case that a relayer does not fulfill their role.
+Relay is powered by Relayers. When a user wishes to bridge, they receive a quote from the Relay API. When the quote is accepted, the user deposits into the [Relay Depository Contracts](/references/protocol/depository/overview), either by submitting a tx or signing a gasless permission. The user is then filled on the destination chain by a Relayer. At this point the users order has been successfully completed. The last step of the Relay involves the Relayer claiming deposited funds, mediated by the [Relay Protocol](/references/protocol/).
 
-Today Relay is powered by the [Reservoir Relayer](/how-it-works/the-reservoir-relayer). We are hard at work on the [Relay Protocol](/how-it-works/relay-protocol), which will allow additional relayers to participate in Relay.
+Today Relay is powered by the [Reservoir Relayer](/how-it-works/the-reservoir-relayer). With a live deposit flow in production, Users no longer need to trust Relayers in our system and we are currently finalizing how additional Relayers may be added.
 
 ## How is it so fast?
 
@@ -36,10 +36,6 @@ In most systems, order validation and fee collection happen on the same chain as
 ## What chains are supported?
 
 In many systems, expanding to a new chain requires deploying contracts, getting consensus amongst a network of actors, or deploying liquidity pools. With Relay, you just need a single relayer who is willing to operate on a chain, and it’s permissionless for them to get started. This is critical in a world with an abundance of chains. If you are interested in having your chain supported, reach out!
-
-## Is it trustless?
-
-Not yet! We are hard at work developing the [Relay Protocol](/how-it-works/relay-protocol), a trustless system that allows users to interact with a permissionless set of relayers. However today, Relay is powered by [Reservoir](https://reservoir.tools/) who is responsible for both order validation & relaying. We have mechanics in place to make sure orders are filled, and funds allocated in case of transaction failure. If you are interested in an enterprise agreement, please reach out.
 
 ## Use Cases
 
