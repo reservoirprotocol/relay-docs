@@ -190,7 +190,13 @@
           "pages": [
             "references/protocol/depository/overview",
             "references/protocol/depository/architecture",
-            "references/protocol/depository/security"
+            "references/protocol/depository/security",
+            {
+              "group": "Contracts Reference",
+              "pages": [
+                "references/protocol/depository/contracts/Solana-Relay-Depository"
+              ]
+            }
           ]
         },
         {
