@@ -30,37 +30,54 @@ pub struct RelayDepository;
 
 ###### Trait Implementations
 
+- **Clone**
+  - ```rust
+    fn clone(self: &Self) -> RelayDepository { /* ... */ }
+    ```
+
 - **Into**
   - ```rust
     fn into(self: Self) -> U { /* ... */ }
     ```
     Calls `U::from(self)`.
 
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **Id**
-  - ```rust
-    fn id() -> Pubkey { /* ... */ }
-    ```
-
-- **Sync**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **Same**
-- **Send**
-- **IntoEither**
 - **Borrow**
   - ```rust
     fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **Sync**
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
+    ```
+
+- **UnwindSafe**
+- **Unpin**
 - **Freeze**
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
+- **RefUnwindSafe**
+- **Send**
 - **ToOwned**
   - ```rust
     fn to_owned(self: &Self) -> T { /* ... */ }
@@ -70,24 +87,17 @@ pub struct RelayDepository;
     fn clone_into(self: &Self, target: &mut T) { /* ... */ }
     ```
 
-- **UnwindSafe**
-- **AbiExample**
+- **VZip**
   - ```rust
-    fn example() -> T { /* ... */ }
+    fn vzip(self: Self) -> V { /* ... */ }
     ```
 
-- **RefUnwindSafe**
-- **TryFrom**
+- **CloneToUninit**
   - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    unsafe fn clone_to_uninit(self: &Self, dest: *mut u8) { /* ... */ }
     ```
 
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
+- **Same**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -105,27 +115,17 @@ pub struct RelayDepository;
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **Clone**
+- **Id**
   - ```rust
-    fn clone(self: &Self) -> RelayDepository { /* ... */ }
+    fn id() -> Pubkey { /* ... */ }
     ```
 
-- **TryInto**
+- **IntoEither**
+- **TryFrom**
   - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **CloneToUninit**
-  - ```rust
-    unsafe fn clone_to_uninit(self: &Self, dest: *mut u8) { /* ... */ }
-    ```
-
-- **Unpin**
 ## Module `relay_depository`
 
 ```rust
@@ -270,19 +270,14 @@ pub struct Initialize;
 
 ###### Trait Implementations
 
-- **From**
+- **Discriminator**
+- **Unpin**
+- **AbiExample**
   - ```rust
-    fn from(t: T) -> T { /* ... */ }
+    fn example() -> T { /* ... */ }
     ```
-    Returns the argument unchanged.
 
-- **IntoEither**
 - **Same**
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -300,20 +295,52 @@ pub struct Initialize;
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
+- **IntoEither**
+- **Send**
+- **InstructionData**
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **Sync**
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **UnwindSafe**
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **RefUnwindSafe**
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **Owner**
+  - ```rust
+    fn owner() -> Pubkey { /* ... */ }
+    ```
+
 - **Into**
   - ```rust
     fn into(self: Self) -> U { /* ... */ }
     ```
     Calls `U::from(self)`.
 
-- **BorrowMut**
+- **TryFrom**
   - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
-- **TryInto**
+- **Borrow**
   - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
 - **BorshDeserialize**
@@ -321,43 +348,16 @@ pub struct Initialize;
     fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
     ```
 
-- **InstructionData**
-- **Unpin**
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
-- **Send**
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
 - **BorshSerialize**
   - ```rust
     fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
     ```
 
-- **UnwindSafe**
-- **RefUnwindSafe**
-- **Discriminator**
-- **Owner**
+- **TryInto**
   - ```rust
-    fn owner() -> Pubkey { /* ... */ }
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
     ```
 
-- **Sync**
 - **Freeze**
 #### Struct `SetAllocator`
 
@@ -379,14 +379,28 @@ pub struct SetAllocator {
 
 ###### Trait Implementations
 
-- **TryFrom**
+- **Into**
   - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **Same**
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
     ```
 
-- **BorrowMut**
+- **InstructionData**
+- **Owner**
   - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    fn owner() -> Pubkey { /* ... */ }
+    ```
+
+- **Discriminator**
+- **BorshSerialize**
+  - ```rust
+    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
     ```
 
 - **TryInto**
@@ -394,55 +408,47 @@ pub struct SetAllocator {
     fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
     ```
 
-- **BorshSerialize**
-  - ```rust
-    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
-- **Discriminator**
-- **Sync**
-- **UnwindSafe**
-- **Same**
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **RefUnwindSafe**
 - **From**
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
     Returns the argument unchanged.
 
-- **IntoEither**
+- **Sync**
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **UnwindSafe**
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
 - **Freeze**
+- **Unpin**
 - **Borrow**
   - ```rust
     fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
-- **Unpin**
 - **Send**
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
+- **IntoEither**
 - **BorshDeserialize**
   - ```rust
     fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **RefUnwindSafe**
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
     ```
 
 - **Pointable**
@@ -460,12 +466,6 @@ pub struct SetAllocator {
 
   - ```rust
     unsafe fn drop(ptr: usize) { /* ... */ }
-    ```
-
-- **InstructionData**
-- **Owner**
-  - ```rust
-    fn owner() -> Pubkey { /* ... */ }
     ```
 
 #### Struct `SetOwner`
@@ -488,37 +488,45 @@ pub struct SetOwner {
 
 ###### Trait Implementations
 
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
 - **BorshSerialize**
   - ```rust
     fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
     ```
 
-- **Freeze**
-- **VZip**
+- **Any**
   - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
     ```
 
-- **Sync**
-- **RefUnwindSafe**
+- **UnwindSafe**
 - **Into**
   - ```rust
     fn into(self: Self) -> U { /* ... */ }
     ```
     Calls `U::from(self)`.
 
+- **IntoEither**
 - **From**
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
     Returns the argument unchanged.
 
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **Same**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -536,33 +544,10 @@ pub struct SetOwner {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
+- **InstructionData**
 - **BorshDeserialize**
   - ```rust
     fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **Discriminator**
-- **IntoEither**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **Owner**
-  - ```rust
-    fn owner() -> Pubkey { /* ... */ }
-    ```
-
-- **Send**
-- **UnwindSafe**
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
     ```
 
 - **TryFrom**
@@ -570,13 +555,28 @@ pub struct SetOwner {
     fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
-- **InstructionData**
-- **Borrow**
+- **Same**
+- **AbiExample**
   - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
+    fn example() -> T { /* ... */ }
+    ```
+
+- **Freeze**
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
     ```
 
 - **Unpin**
+- **Sync**
+- **Send**
+- **Owner**
+  - ```rust
+    fn owner() -> Pubkey { /* ... */ }
+    ```
+
+- **Discriminator**
+- **RefUnwindSafe**
 #### Struct `DepositNative`
 
 Instruction.
@@ -599,72 +599,18 @@ pub struct DepositNative {
 
 ###### Trait Implementations
 
-- **RefUnwindSafe**
-- **Unpin**
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **InstructionData**
-- **Sync**
-- **Discriminator**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **Send**
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
-- **IntoEither**
-- **UnwindSafe**
-- **BorshDeserialize**
-  - ```rust
-    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
-- **Same**
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **BorshSerialize**
-  - ```rust
-    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
 - **Owner**
   - ```rust
     fn owner() -> Pubkey { /* ... */ }
     ```
 
+- **Sync**
+- **BorshDeserialize**
+  - ```rust
+    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
+- **IntoEither**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -682,12 +628,66 @@ pub struct DepositNative {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
+    ```
+
+- **Discriminator**
+- **Send**
+- **UnwindSafe**
+- **InstructionData**
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **RefUnwindSafe**
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **BorshSerialize**
+  - ```rust
+    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
+- **Into**
+  - ```rust
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
 - **TryFrom**
   - ```rust
     fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
 - **Freeze**
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **Same**
+- **Unpin**
 #### Struct `DepositToken`
 
 Instruction.
@@ -710,63 +710,29 @@ pub struct DepositToken {
 
 ###### Trait Implementations
 
-- **BorshSerialize**
-  - ```rust
-    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
-- **Unpin**
-- **Same**
-- **Sync**
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **InstructionData**
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
-- **Send**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
 - **AbiExample**
   - ```rust
     fn example() -> T { /* ... */ }
     ```
 
-- **TryInto**
+- **BorshSerialize**
   - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
     ```
 
-- **Discriminator**
-- **IntoEither**
-- **RefUnwindSafe**
-- **UnwindSafe**
-- **VZip**
+- **Sync**
+- **Borrow**
   - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
+    fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
-- **Freeze**
+- **Send**
+- **Unpin**
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -784,21 +750,55 @@ pub struct DepositToken {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
 - **Owner**
   - ```rust
     fn owner() -> Pubkey { /* ... */ }
     ```
 
+- **IntoEither**
+- **Into**
+  - ```rust
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **UnwindSafe**
+- **Same**
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **InstructionData**
+- **RefUnwindSafe**
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **Freeze**
 - **BorshDeserialize**
   - ```rust
     fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
     ```
 
+- **Discriminator**
 #### Struct `ExecuteTransfer`
 
 Instruction.
@@ -819,41 +819,16 @@ pub struct ExecuteTransfer {
 
 ###### Trait Implementations
 
-- **TryFrom**
+- **TryInto**
   - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
     ```
 
-- **VZip**
+- **Borrow**
   - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
+    fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
-- **BorshDeserialize**
-  - ```rust
-    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **Owner**
-  - ```rust
-    fn owner() -> Pubkey { /* ... */ }
-    ```
-
-- **Freeze**
-- **RefUnwindSafe**
-- **Unpin**
-- **Send**
-- **BorshSerialize**
-  - ```rust
-    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
-- **InstructionData**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -871,43 +846,68 @@ pub struct ExecuteTransfer {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **Sync**
+- **BorshDeserialize**
+  - ```rust
+    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
+- **Freeze**
+- **InstructionData**
+- **Owner**
+  - ```rust
+    fn owner() -> Pubkey { /* ... */ }
+    ```
+
+- **RefUnwindSafe**
 - **BorrowMut**
   - ```rust
     fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
     ```
 
-- **Discriminator**
-- **Any**
+- **VZip**
   - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    fn vzip(self: Self) -> V { /* ... */ }
     ```
-
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
 
 - **UnwindSafe**
 - **IntoEither**
-- **Borrow**
+- **AbiExample**
   - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
+    fn example() -> T { /* ... */ }
     ```
 
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **Same**
+- **Discriminator**
 - **Into**
   - ```rust
     fn into(self: Self) -> U { /* ... */ }
     ```
     Calls `U::from(self)`.
 
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **Same**
+- **Unpin**
+- **BorshSerialize**
+  - ```rust
+    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **Send**
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **Sync**
 ## Module `cpi`
 
 **Attributes:**
@@ -932,10 +932,16 @@ pub mod accounts { /* ... */ }
 
 ### Re-exports
 
-#### Re-export `crate::__cpi_client_accounts_deposit_token::*`
+#### Re-export `crate::__cpi_client_accounts_set_allocator::*`
 
 ```rust
-pub use crate::__cpi_client_accounts_deposit_token::*;
+pub use crate::__cpi_client_accounts_set_allocator::*;
+```
+
+#### Re-export `crate::__cpi_client_accounts_set_owner::*`
+
+```rust
+pub use crate::__cpi_client_accounts_set_owner::*;
 ```
 
 #### Re-export `crate::__cpi_client_accounts_initialize::*`
@@ -944,28 +950,22 @@ pub use crate::__cpi_client_accounts_deposit_token::*;
 pub use crate::__cpi_client_accounts_initialize::*;
 ```
 
+#### Re-export `crate::__cpi_client_accounts_deposit_token::*`
+
+```rust
+pub use crate::__cpi_client_accounts_deposit_token::*;
+```
+
 #### Re-export `crate::__cpi_client_accounts_execute_transfer::*`
 
 ```rust
 pub use crate::__cpi_client_accounts_execute_transfer::*;
 ```
 
-#### Re-export `crate::__cpi_client_accounts_set_allocator::*`
-
-```rust
-pub use crate::__cpi_client_accounts_set_allocator::*;
-```
-
 #### Re-export `crate::__cpi_client_accounts_deposit_native::*`
 
 ```rust
 pub use crate::__cpi_client_accounts_deposit_native::*;
-```
-
-#### Re-export `crate::__cpi_client_accounts_set_owner::*`
-
-```rust
-pub use crate::__cpi_client_accounts_set_owner::*;
 ```
 
 ### Types
@@ -994,21 +994,43 @@ pub struct Return<T> {
 
 ###### Trait Implementations
 
-- **RefUnwindSafe**
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **Same**
 - **Into**
   - ```rust
     fn into(self: Self) -> U { /* ... */ }
     ```
     Calls `U::from(self)`.
 
-- **UnwindSafe**
+- **Unpin**
+- **Freeze**
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
 - **From**
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
     Returns the argument unchanged.
 
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
 - **Sync**
+- **UnwindSafe**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -1026,44 +1048,22 @@ pub struct Return<T> {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **Freeze**
 - **Any**
   - ```rust
     fn type_id(self: &Self) -> TypeId { /* ... */ }
     ```
 
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **Unpin**
-- **Send**
-- **Same**
-- **IntoEither**
 - **TryFrom**
   - ```rust
     fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
+- **Send**
+- **IntoEither**
+- **RefUnwindSafe**
 - **AbiExample**
   - ```rust
     fn example() -> T { /* ... */ }
-    ```
-
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
 ### Functions
@@ -1116,16 +1116,10 @@ pub mod accounts { /* ... */ }
 
 ### Re-exports
 
-#### Re-export `crate::__client_accounts_set_allocator::*`
+#### Re-export `crate::__client_accounts_execute_transfer::*`
 
 ```rust
-pub use crate::__client_accounts_set_allocator::*;
-```
-
-#### Re-export `crate::__client_accounts_set_owner::*`
-
-```rust
-pub use crate::__client_accounts_set_owner::*;
+pub use crate::__client_accounts_execute_transfer::*;
 ```
 
 #### Re-export `crate::__client_accounts_deposit_token::*`
@@ -1140,10 +1134,16 @@ pub use crate::__client_accounts_deposit_token::*;
 pub use crate::__client_accounts_initialize::*;
 ```
 
-#### Re-export `crate::__client_accounts_execute_transfer::*`
+#### Re-export `crate::__client_accounts_set_owner::*`
 
 ```rust
-pub use crate::__client_accounts_execute_transfer::*;
+pub use crate::__client_accounts_set_owner::*;
+```
+
+#### Re-export `crate::__client_accounts_set_allocator::*`
+
+```rust
+pub use crate::__client_accounts_set_allocator::*;
 ```
 
 #### Re-export `crate::__client_accounts_deposit_native::*`
@@ -1181,84 +1181,11 @@ pub struct RelayDepository {
 
 ##### Trait Implementations
 
-- **CloneToUninit**
-  - ```rust
-    unsafe fn clone_to_uninit(self: &Self, dest: *mut u8) { /* ... */ }
-    ```
-
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **AccountSerialize**
-  - ```rust
-    fn try_serialize<W: std::io::Write>(self: &Self, writer: &mut W) -> anchor_lang::Result<()> { /* ... */ }
-    ```
-
 - **Any**
   - ```rust
     fn type_id(self: &Self) -> TypeId { /* ... */ }
     ```
 
-- **AccountDeserialize**
-  - ```rust
-    fn try_deserialize(buf: &mut &[u8]) -> anchor_lang::Result<Self> { /* ... */ }
-    ```
-
-  - ```rust
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> { /* ... */ }
-    ```
-
-- **Discriminator**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **IntoEither**
-- **Space**
-- **RefUnwindSafe**
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
-- **UnwindSafe**
-- **Sync**
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **Clone**
-  - ```rust
-    fn clone(self: &Self) -> RelayDepository { /* ... */ }
-    ```
-
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
-- **BorshSerialize**
-  - ```rust
-    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
-- **Owner**
-  - ```rust
-    fn owner() -> Pubkey { /* ... */ }
-    ```
-
-- **Same**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -1276,17 +1203,51 @@ pub struct RelayDepository {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
+- **Same**
+- **UnwindSafe**
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
 - **Unpin**
+- **IntoEither**
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **Freeze**
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **Space**
+- **Clone**
+  - ```rust
+    fn clone(self: &Self) -> RelayDepository { /* ... */ }
+    ```
+
 - **BorshDeserialize**
   - ```rust
     fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
     ```
 
-- **Freeze**
-- **Send**
-- **Borrow**
+- **RefUnwindSafe**
+- **AccountSerialize**
   - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
+    fn try_serialize<W: std::io::Write>(self: &Self, writer: &mut W) -> anchor_lang::Result<()> { /* ... */ }
+    ```
+
+- **Owner**
+  - ```rust
+    fn owner() -> Pubkey { /* ... */ }
     ```
 
 - **ToOwned**
@@ -1298,10 +1259,49 @@ pub struct RelayDepository {
     fn clone_into(self: &Self, target: &mut T) { /* ... */ }
     ```
 
-- **VZip**
+- **Sync**
+- **From**
   - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
+    fn from(t: T) -> T { /* ... */ }
     ```
+    Returns the argument unchanged.
+
+- **Send**
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **CloneToUninit**
+  - ```rust
+    unsafe fn clone_to_uninit(self: &Self, dest: *mut u8) { /* ... */ }
+    ```
+
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
+    ```
+
+- **BorshSerialize**
+  - ```rust
+    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
+- **AccountDeserialize**
+  - ```rust
+    fn try_deserialize(buf: &mut &[u8]) -> anchor_lang::Result<Self> { /* ... */ }
+    ```
+
+  - ```rust
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> { /* ... */ }
+    ```
+
+- **Discriminator**
+- **Into**
+  - ```rust
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
 
 ### Struct `UsedRequest`
 
@@ -1325,25 +1325,37 @@ pub struct UsedRequest {
 
 ##### Trait Implementations
 
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **Space**
-- **BorshDeserialize**
-  - ```rust
-    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
 - **BorshSerialize**
   - ```rust
     fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
     ```
 
-- **Clone**
+- **AbiExample**
   - ```rust
-    fn clone(self: &Self) -> UsedRequest { /* ... */ }
+    fn example() -> T { /* ... */ }
+    ```
+
+- **Into**
+  - ```rust
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **UnwindSafe**
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **Send**
+- **CloneToUninit**
+  - ```rust
+    unsafe fn clone_to_uninit(self: &Self, dest: *mut u8) { /* ... */ }
     ```
 
 - **ToOwned**
@@ -1355,23 +1367,49 @@ pub struct UsedRequest {
     fn clone_into(self: &Self, target: &mut T) { /* ... */ }
     ```
 
-- **VZip**
+- **Space**
+- **Discriminator**
+- **TryInto**
   - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
     ```
 
-- **Same**
+- **Sync**
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **BorshDeserialize**
+  - ```rust
+    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
+- **Freeze**
+- **Unpin**
+- **IntoEither**
+- **Clone**
+  - ```rust
+    fn clone(self: &Self) -> UsedRequest { /* ... */ }
+    ```
+
+- **RefUnwindSafe**
 - **AccountSerialize**
   - ```rust
     fn try_serialize<W: std::io::Write>(self: &Self, writer: &mut W) -> anchor_lang::Result<()> { /* ... */ }
     ```
 
-- **Owner**
-  - ```rust
-    fn owner() -> Pubkey { /* ... */ }
-    ```
-
-- **Sync**
 - **AccountDeserialize**
   - ```rust
     fn try_deserialize(buf: &mut &[u8]) -> anchor_lang::Result<Self> { /* ... */ }
@@ -1381,21 +1419,17 @@ pub struct UsedRequest {
     fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> { /* ... */ }
     ```
 
-- **TryFrom**
+- **VZip**
   - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    fn vzip(self: Self) -> V { /* ... */ }
     ```
 
-- **TryInto**
+- **Owner**
   - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    fn owner() -> Pubkey { /* ... */ }
     ```
 
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
+- **Same**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -1411,40 +1445,6 @@ pub struct UsedRequest {
 
   - ```rust
     unsafe fn drop(ptr: usize) { /* ... */ }
-    ```
-
-- **Discriminator**
-- **Freeze**
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
-- **UnwindSafe**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **Send**
-- **Unpin**
-- **RefUnwindSafe**
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **IntoEither**
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **CloneToUninit**
-  - ```rust
-    unsafe fn clone_to_uninit(self: &Self, dest: *mut u8) { /* ... */ }
     ```
 
 ### Struct `Initialize`
@@ -1475,40 +1475,53 @@ pub struct Initialize<''info> {
 
 ##### Trait Implementations
 
-- **Into**
+- **AbiExample**
   - ```rust
-    fn into(self: Self) -> U { /* ... */ }
+    fn example() -> T { /* ... */ }
     ```
-    Calls `U::from(self)`.
 
+- **Unpin**
 - **From**
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
     Returns the argument unchanged.
 
-- **Send**
 - **Borrow**
   - ```rust
     fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
-- **Unpin**
-- **Same**
-- **RefUnwindSafe**
-- **TryInto**
+- **Sync**
+- **BorrowMut**
   - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
     ```
 
+- **Freeze**
+- **UnwindSafe**
+- **Same**
+- **IntoEither**
 - **ToAccountInfos**
   - ```rust
     fn to_account_infos(self: &Self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<''info>> { /* ... */ }
     ```
 
-- **Bumps**
-- **Freeze**
-- **Sync**
+- **ToAccountMetas**
+  - ```rust
+    fn to_account_metas(self: &Self, is_signer: Option<bool>) -> Vec<anchor_lang::solana_program::instruction::AccountMeta> { /* ... */ }
+    ```
+
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -1526,30 +1539,23 @@ pub struct Initialize<''info> {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
+- **Bumps**
+- **AccountsExit**
+  - ```rust
+    fn exit(self: &Self, program_id: &anchor_lang::solana_program::pubkey::Pubkey) -> anchor_lang::Result<()> { /* ... */ }
+    ```
+
+- **Into**
+  - ```rust
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **RefUnwindSafe**
+- **Send**
 - **TryFrom**
   - ```rust
     fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
-- **UnwindSafe**
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **Accounts**
-  - ```rust
-    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut InitializeBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
-    ```
-
-- **ToAccountMetas**
-  - ```rust
-    fn to_account_metas(self: &Self, is_signer: Option<bool>) -> Vec<anchor_lang::solana_program::instruction::AccountMeta> { /* ... */ }
-    ```
-
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
     ```
 
 - **VZip**
@@ -1557,17 +1563,11 @@ pub struct Initialize<''info> {
     fn vzip(self: Self) -> V { /* ... */ }
     ```
 
-- **AccountsExit**
+- **Accounts**
   - ```rust
-    fn exit(self: &Self, program_id: &anchor_lang::solana_program::pubkey::Pubkey) -> anchor_lang::Result<()> { /* ... */ }
+    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut InitializeBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
     ```
 
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **IntoEither**
 ### Struct `InitializeBumps`
 
 ```rust
@@ -1588,17 +1588,26 @@ pub struct InitializeBumps {
 
 ##### Trait Implementations
 
-- **Default**
-  - ```rust
-    fn default() -> Self { /* ... */ }
-    ```
-
-- **Send**
-- **IntoEither**
-- **Freeze**
+- **Sync**
 - **TryFrom**
   - ```rust
     fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
+- **IntoEither**
+- **Debug**
+  - ```rust
+    fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
+    ```
+
+- **Default**
+  - ```rust
+    fn default() -> Self { /* ... */ }
     ```
 
 - **VZip**
@@ -1606,16 +1615,10 @@ pub struct InitializeBumps {
     fn vzip(self: Self) -> V { /* ... */ }
     ```
 
-- **AbiExample**
+- **BorrowMut**
   - ```rust
-    fn example() -> T { /* ... */ }
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
     ```
-
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
 
 - **From**
   - ```rust
@@ -1628,9 +1631,9 @@ pub struct InitializeBumps {
     fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
-- **Debug**
+- **AbiExample**
   - ```rust
-    fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
+    fn example() -> T { /* ... */ }
     ```
 
 - **Accounts**
@@ -1638,12 +1641,8 @@ pub struct InitializeBumps {
     fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut InitializeBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
     ```
 
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
 - **RefUnwindSafe**
+- **Send**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -1661,20 +1660,21 @@ pub struct InitializeBumps {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
+- **Unpin**
+- **Freeze**
+- **UnwindSafe**
 - **Any**
   - ```rust
     fn type_id(self: &Self) -> TypeId { /* ... */ }
     ```
 
-- **Sync**
-- **Unpin**
-- **UnwindSafe**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
 - **Same**
+- **Into**
+  - ```rust
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
 ### Struct `SetAllocator`
 
 Accounts required for updating the allocator
@@ -1697,6 +1697,82 @@ pub struct SetAllocator<''info> {
 
 ##### Trait Implementations
 
+- **AccountsExit**
+  - ```rust
+    fn exit(self: &Self, program_id: &anchor_lang::solana_program::pubkey::Pubkey) -> anchor_lang::Result<()> { /* ... */ }
+    ```
+
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **Freeze**
+- **IntoEither**
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **Sync**
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
+    ```
+
+- **Accounts**
+  - ```rust
+    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut SetAllocatorBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
+    ```
+
+- **UnwindSafe**
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **ToAccountMetas**
+  - ```rust
+    fn to_account_metas(self: &Self, is_signer: Option<bool>) -> Vec<anchor_lang::solana_program::instruction::AccountMeta> { /* ... */ }
+    ```
+
+- **Into**
+  - ```rust
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **RefUnwindSafe**
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **Same**
+- **Bumps**
+- **Unpin**
+- **ToAccountInfos**
+  - ```rust
+    fn to_account_infos(self: &Self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<''info>> { /* ... */ }
+    ```
+
+- **Send**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -1714,82 +1790,6 @@ pub struct SetAllocator<''info> {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
-- **Same**
-- **Send**
-- **Unpin**
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **ToAccountInfos**
-  - ```rust
-    fn to_account_infos(self: &Self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<''info>> { /* ... */ }
-    ```
-
-- **UnwindSafe**
-- **AccountsExit**
-  - ```rust
-    fn exit(self: &Self, program_id: &anchor_lang::solana_program::pubkey::Pubkey) -> anchor_lang::Result<()> { /* ... */ }
-    ```
-
-- **Bumps**
-- **RefUnwindSafe**
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **Sync**
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **ToAccountMetas**
-  - ```rust
-    fn to_account_metas(self: &Self, is_signer: Option<bool>) -> Vec<anchor_lang::solana_program::instruction::AccountMeta> { /* ... */ }
-    ```
-
-- **Accounts**
-  - ```rust
-    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut SetAllocatorBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
-    ```
-
-- **Freeze**
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
-- **IntoEither**
 ### Struct `SetAllocatorBumps`
 
 ```rust
@@ -1808,47 +1808,9 @@ pub struct SetAllocatorBumps {
 
 ##### Trait Implementations
 
-- **Send**
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
-- **IntoEither**
-- **RefUnwindSafe**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
 - **Accounts**
   - ```rust
     fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut SetAllocatorBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
-    ```
-
-- **Same**
-- **Unpin**
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **Freeze**
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
     ```
 
 - **Default**
@@ -1856,23 +1818,9 @@ pub struct SetAllocatorBumps {
     fn default() -> Self { /* ... */ }
     ```
 
-- **UnwindSafe**
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **Sync**
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
+- **Freeze**
+- **IntoEither**
+- **Unpin**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -1890,9 +1838,61 @@ pub struct SetAllocatorBumps {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **Into**
+  - ```rust
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
 - **Debug**
   - ```rust
     fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
+    ```
+
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **UnwindSafe**
+- **RefUnwindSafe**
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **Same**
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
+- **Sync**
+- **Send**
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
     ```
 
 ### Struct `SetOwner`
@@ -1917,16 +1917,43 @@ pub struct SetOwner<''info> {
 
 ##### Trait Implementations
 
+- **Sync**
+- **ToAccountInfos**
+  - ```rust
+    fn to_account_infos(self: &Self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<''info>> { /* ... */ }
+    ```
+
+- **RefUnwindSafe**
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **Freeze**
+- **UnwindSafe**
 - **ToAccountMetas**
   - ```rust
     fn to_account_metas(self: &Self, is_signer: Option<bool>) -> Vec<anchor_lang::solana_program::instruction::AccountMeta> { /* ... */ }
     ```
 
-- **Sync**
-- **Unpin**
-- **TryFrom**
+- **Bumps**
+- **Into**
   - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **Same**
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **Unpin**
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
     ```
 
 - **BorrowMut**
@@ -1939,52 +1966,7 @@ pub struct SetOwner<''info> {
     fn exit(self: &Self, program_id: &anchor_lang::solana_program::pubkey::Pubkey) -> anchor_lang::Result<()> { /* ... */ }
     ```
 
-- **Accounts**
-  - ```rust
-    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut SetOwnerBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
-    ```
-
 - **IntoEither**
-- **Send**
-- **RefUnwindSafe**
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **ToAccountInfos**
-  - ```rust
-    fn to_account_infos(self: &Self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<''info>> { /* ... */ }
-    ```
-
-- **Freeze**
-- **Same**
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -2002,14 +1984,32 @@ pub struct SetOwner<''info> {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **UnwindSafe**
-- **From**
+- **Any**
   - ```rust
-    fn from(t: T) -> T { /* ... */ }
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
     ```
-    Returns the argument unchanged.
 
-- **Bumps**
+- **Send**
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
+- **Accounts**
+  - ```rust
+    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut SetOwnerBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
+    ```
+
 ### Struct `SetOwnerBumps`
 
 ```rust
@@ -2028,20 +2028,11 @@ pub struct SetOwnerBumps {
 
 ##### Trait Implementations
 
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **Send**
+- **Same**
+- **RefUnwindSafe**
 - **Borrow**
   - ```rust
     fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
 - **Any**
@@ -2049,6 +2040,28 @@ pub struct SetOwnerBumps {
     fn type_id(self: &Self) -> TypeId { /* ... */ }
     ```
 
+- **Into**
+  - ```rust
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
+    ```
+
+- **IntoEither**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -2066,42 +2079,22 @@ pub struct SetOwnerBumps {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
-- **Same**
-- **IntoEither**
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **Default**
-  - ```rust
-    fn default() -> Self { /* ... */ }
-    ```
-
-- **Sync**
-- **Unpin**
 - **Freeze**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **RefUnwindSafe**
 - **VZip**
   - ```rust
     fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **Send**
+- **Accounts**
+  - ```rust
+    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut SetOwnerBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
+    ```
+
+- **Unpin**
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
 - **Debug**
@@ -2109,11 +2102,18 @@ pub struct SetOwnerBumps {
     fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
     ```
 
-- **Accounts**
+- **Default**
   - ```rust
-    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut SetOwnerBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
+    fn default() -> Self { /* ... */ }
     ```
 
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **Sync**
 - **UnwindSafe**
 ### Struct `DepositNative`
 
@@ -2143,30 +2143,33 @@ pub struct DepositNative<''info> {
 
 ##### Trait Implementations
 
-- **IntoEither**
-- **TryFrom**
+- **BorrowMut**
   - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
     ```
 
-- **ToAccountInfos**
+- **UnwindSafe**
+- **From**
   - ```rust
-    fn to_account_infos(self: &Self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<''info>> { /* ... */ }
+    fn from(t: T) -> T { /* ... */ }
     ```
+    Returns the argument unchanged.
 
 - **RefUnwindSafe**
+- **Send**
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **Same**
+- **Sync**
+- **Bumps**
 - **AbiExample**
   - ```rust
     fn example() -> T { /* ... */ }
     ```
 
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **Same**
-- **Freeze**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -2184,20 +2187,38 @@ pub struct DepositNative<''info> {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **BorrowMut**
+- **AccountsExit**
   - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    fn exit(self: &Self, program_id: &anchor_lang::solana_program::pubkey::Pubkey) -> anchor_lang::Result<()> { /* ... */ }
     ```
 
+- **Unpin**
+- **IntoEither**
+- **ToAccountInfos**
+  - ```rust
+    fn to_account_infos(self: &Self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<''info>> { /* ... */ }
+    ```
+
+- **Freeze**
 - **Into**
   - ```rust
     fn into(self: Self) -> U { /* ... */ }
     ```
     Calls `U::from(self)`.
 
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
 - **Accounts**
   - ```rust
     fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut DepositNativeBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
+    ```
+
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
 - **ToAccountMetas**
@@ -2205,37 +2226,16 @@ pub struct DepositNative<''info> {
     fn to_account_metas(self: &Self, is_signer: Option<bool>) -> Vec<anchor_lang::solana_program::instruction::AccountMeta> { /* ... */ }
     ```
 
-- **VZip**
+- **TryFrom**
   - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
-- **Unpin**
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **Sync**
-- **AccountsExit**
-  - ```rust
-    fn exit(self: &Self, program_id: &anchor_lang::solana_program::pubkey::Pubkey) -> anchor_lang::Result<()> { /* ... */ }
-    ```
-
-- **Send**
-- **Bumps**
 - **Any**
   - ```rust
     fn type_id(self: &Self) -> TypeId { /* ... */ }
     ```
 
-- **UnwindSafe**
 ### Struct `DepositNativeBumps`
 
 ```rust
@@ -2254,23 +2254,12 @@ pub struct DepositNativeBumps {
 
 ##### Trait Implementations
 
-- **Debug**
+- **Into**
   - ```rust
-    fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
+    fn into(self: Self) -> U { /* ... */ }
     ```
+    Calls `U::from(self)`.
 
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **Same**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -2288,30 +2277,33 @@ pub struct DepositNativeBumps {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
+- **Send**
+- **Freeze**
 - **UnwindSafe**
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
 - **Accounts**
   - ```rust
     fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut DepositNativeBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
     ```
 
-- **Sync**
-- **Freeze**
-- **Send**
-- **Unpin**
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
 - **TryFrom**
   - ```rust
     fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **Same**
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **Debug**
+  - ```rust
+    fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
     ```
 
 - **Borrow**
@@ -2319,6 +2311,7 @@ pub struct DepositNativeBumps {
     fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
+- **Unpin**
 - **Any**
   - ```rust
     fn type_id(self: &Self) -> TypeId { /* ... */ }
@@ -2329,18 +2322,25 @@ pub struct DepositNativeBumps {
     fn default() -> Self { /* ... */ }
     ```
 
-- **RefUnwindSafe**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
 - **IntoEither**
+- **RefUnwindSafe**
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **Sync**
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
+    ```
+
 ### Struct `DepositToken`
 
 Accounts required for depositing tokens
@@ -2379,28 +2379,11 @@ pub struct DepositToken<''info> {
 
 ##### Trait Implementations
 
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
-- **Send**
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
-- **UnwindSafe**
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
 - **Same**
-- **BorrowMut**
+- **Freeze**
+- **ToAccountMetas**
   - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    fn to_account_metas(self: &Self, is_signer: Option<bool>) -> Vec<anchor_lang::solana_program::instruction::AccountMeta> { /* ... */ }
     ```
 
 - **Accounts**
@@ -2408,14 +2391,11 @@ pub struct DepositToken<''info> {
     fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut DepositTokenBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
     ```
 
-- **ToAccountMetas**
+- **Send**
+- **RefUnwindSafe**
+- **BorrowMut**
   - ```rust
-    fn to_account_metas(self: &Self, is_signer: Option<bool>) -> Vec<anchor_lang::solana_program::instruction::AccountMeta> { /* ... */ }
-    ```
-
-- **AccountsExit**
-  - ```rust
-    fn exit(self: &Self, program_id: &anchor_lang::solana_program::pubkey::Pubkey) -> anchor_lang::Result<()> { /* ... */ }
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
     ```
 
 - **VZip**
@@ -2423,9 +2403,28 @@ pub struct DepositToken<''info> {
     fn vzip(self: Self) -> V { /* ... */ }
     ```
 
-- **RefUnwindSafe**
-- **IntoEither**
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
+    ```
+
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
 - **Sync**
+- **UnwindSafe**
+- **ToAccountInfos**
+  - ```rust
+    fn to_account_infos(self: &Self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<''info>> { /* ... */ }
+    ```
+
+- **AccountsExit**
+  - ```rust
+    fn exit(self: &Self, program_id: &anchor_lang::solana_program::pubkey::Pubkey) -> anchor_lang::Result<()> { /* ... */ }
+    ```
+
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -2443,34 +2442,35 @@ pub struct DepositToken<''info> {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **Unpin**
 - **TryInto**
   - ```rust
     fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
     ```
 
-- **Bumps**
-- **ToAccountInfos**
+- **TryFrom**
   - ```rust
-    fn to_account_infos(self: &Self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<''info>> { /* ... */ }
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
-- **Freeze**
+- **IntoEither**
+- **Bumps**
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **Unpin**
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
 - **Into**
   - ```rust
     fn into(self: Self) -> U { /* ... */ }
     ```
     Calls `U::from(self)`.
-
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
 
 ### Struct `DepositTokenBumps`
 
@@ -2490,47 +2490,14 @@ pub struct DepositTokenBumps {
 
 ##### Trait Implementations
 
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
-- **Freeze**
-- **Default**
-  - ```rust
-    fn default() -> Self { /* ... */ }
-    ```
-
-- **UnwindSafe**
-- **Accounts**
-  - ```rust
-    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut DepositTokenBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
-    ```
-
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
-- **IntoEither**
-- **Unpin**
-- **Sync**
-- **Same**
-- **Send**
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
 - **BorrowMut**
   - ```rust
     fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **Accounts**
+  - ```rust
+    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut DepositTokenBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
     ```
 
 - **Pointable**
@@ -2550,6 +2517,27 @@ pub struct DepositTokenBumps {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **Same**
+- **Debug**
+  - ```rust
+    fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
+    ```
+
 - **Borrow**
   - ```rust
     fn borrow(self: &Self) -> &T { /* ... */ }
@@ -2561,22 +2549,34 @@ pub struct DepositTokenBumps {
     ```
     Returns the argument unchanged.
 
-- **VZip**
+- **TryInto**
   - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
     ```
 
-- **Debug**
+- **Into**
   - ```rust
-    fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **IntoEither**
+- **Default**
+  - ```rust
+    fn default() -> Self { /* ... */ }
     ```
 
+- **Send**
 - **RefUnwindSafe**
 - **AbiExample**
   - ```rust
     fn example() -> T { /* ... */ }
     ```
 
+- **Unpin**
+- **Freeze**
+- **Sync**
+- **UnwindSafe**
 ### Struct `ExecuteTransfer`
 
 **Attributes:**
@@ -2623,51 +2623,55 @@ pub struct ExecuteTransfer<''info> {
 
 ##### Trait Implementations
 
-- **Freeze**
-- **BorrowMut**
+- **TryInto**
   - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
     ```
 
-- **Into**
+- **Sync**
+- **Any**
   - ```rust
-    fn into(self: Self) -> U { /* ... */ }
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
     ```
-    Calls `U::from(self)`.
+
+- **ToAccountInfos**
+  - ```rust
+    fn to_account_infos(self: &Self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<''info>> { /* ... */ }
+    ```
+
+- **ToAccountMetas**
+  - ```rust
+    fn to_account_metas(self: &Self, is_signer: Option<bool>) -> Vec<anchor_lang::solana_program::instruction::AccountMeta> { /* ... */ }
+    ```
 
 - **TryFrom**
   - ```rust
     fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
-- **IntoEither**
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
+- **Unpin**
+- **Bumps**
+- **UnwindSafe**
+- **Send**
+- **RefUnwindSafe**
 - **Borrow**
   - ```rust
     fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
-- **TryInto**
+- **Same**
+- **Into**
   - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
     ```
 
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **Accounts**
-  - ```rust
-    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut ExecuteTransferBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
-    ```
-
-- **Unpin**
-- **UnwindSafe**
+- **IntoEither**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -2685,36 +2689,32 @@ pub struct ExecuteTransfer<''info> {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **Bumps**
-- **AccountsExit**
+- **Accounts**
   - ```rust
-    fn exit(self: &Self, program_id: &anchor_lang::solana_program::pubkey::Pubkey) -> anchor_lang::Result<()> { /* ... */ }
+    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut ExecuteTransferBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
     ```
 
-- **RefUnwindSafe**
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **Same**
-- **ToAccountMetas**
-  - ```rust
-    fn to_account_metas(self: &Self, is_signer: Option<bool>) -> Vec<anchor_lang::solana_program::instruction::AccountMeta> { /* ... */ }
-    ```
-
-- **ToAccountInfos**
-  - ```rust
-    fn to_account_infos(self: &Self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<''info>> { /* ... */ }
-    ```
-
-- **Send**
-- **Sync**
 - **From**
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
     Returns the argument unchanged.
+
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **Freeze**
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
+    ```
+
+- **AccountsExit**
+  - ```rust
+    fn exit(self: &Self, program_id: &anchor_lang::solana_program::pubkey::Pubkey) -> anchor_lang::Result<()> { /* ... */ }
+    ```
 
 ### Struct `ExecuteTransferBumps`
 
@@ -2736,66 +2736,20 @@ pub struct ExecuteTransferBumps {
 
 ##### Trait Implementations
 
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **RefUnwindSafe**
-- **Unpin**
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **Accounts**
-  - ```rust
-    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut ExecuteTransferBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
-    ```
-
-- **Sync**
-- **IntoEither**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **Freeze**
-- **Send**
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **Debug**
-  - ```rust
-    fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
-    ```
-
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
 - **TryInto**
   - ```rust
     fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
     ```
 
-- **Borrow**
+- **UnwindSafe**
+- **Send**
+- **Sync**
+- **BorrowMut**
   - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
     ```
 
-- **UnwindSafe**
-- **Same**
+- **IntoEither**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -2813,15 +2767,61 @@ pub struct ExecuteTransferBumps {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
+- **RefUnwindSafe**
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **Accounts**
+  - ```rust
+    fn try_accounts(__program_id: &anchor_lang::solana_program::pubkey::Pubkey, __accounts: &mut &''info [anchor_lang::solana_program::account_info::AccountInfo<''info>], __ix_data: &[u8], __bumps: &mut ExecuteTransferBumps, __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>) -> anchor_lang::Result<Self> { /* ... */ }
+    ```
+
 - **Default**
   - ```rust
     fn default() -> Self { /* ... */ }
     ```
 
+- **Debug**
+  - ```rust
+    fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
+    ```
+
+- **Unpin**
 - **AbiExample**
   - ```rust
     fn example() -> T { /* ... */ }
     ```
+
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **Freeze**
+- **Into**
+  - ```rust
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **Same**
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
 
 ### Struct `TransferRequest`
 
@@ -2858,80 +2858,29 @@ pub struct TransferRequest {
 
 ##### Trait Implementations
 
-- **BorshSerialize**
-  - ```rust
-    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
-- **PartialEq**
-  - ```rust
-    fn eq(self: &Self, other: &TransferRequest) -> bool { /* ... */ }
-    ```
-
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **RefUnwindSafe**
-- **Unpin**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
-- **Freeze**
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
 - **Debug**
   - ```rust
     fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
     ```
 
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **Send**
-- **Sync**
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **Same**
-- **Clone**
-  - ```rust
-    fn clone(self: &Self) -> TransferRequest { /* ... */ }
-    ```
-
-- **IntoEither**
 - **AbiExample**
   - ```rust
     fn example() -> T { /* ... */ }
     ```
 
-- **StructuralPartialEq**
+- **IntoEither**
+- **RefUnwindSafe**
+- **BorshSerialize**
+  - ```rust
+    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
 - **CloneToUninit**
   - ```rust
     unsafe fn clone_to_uninit(self: &Self, dest: *mut u8) { /* ... */ }
     ```
 
-- **Into**
-  - ```rust
-    fn into(self: Self) -> U { /* ... */ }
-    ```
-    Calls `U::from(self)`.
-
+- **Freeze**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -2949,12 +2898,18 @@ pub struct TransferRequest {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **Copy**
-- **BorshDeserialize**
+- **Into**
   - ```rust
-    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
+    fn into(self: Self) -> U { /* ... */ }
+    ```
+    Calls `U::from(self)`.
+
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
+- **Unpin**
 - **UnwindSafe**
 - **ToOwned**
   - ```rust
@@ -2965,11 +2920,56 @@ pub struct TransferRequest {
     fn clone_into(self: &Self, target: &mut T) { /* ... */ }
     ```
 
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **Sync**
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
 - **From**
   - ```rust
     fn from(t: T) -> T { /* ... */ }
     ```
     Returns the argument unchanged.
+
+- **Clone**
+  - ```rust
+    fn clone(self: &Self) -> TransferRequest { /* ... */ }
+    ```
+
+- **StructuralPartialEq**
+- **Copy**
+- **PartialEq**
+  - ```rust
+    fn eq(self: &Self, other: &TransferRequest) -> bool { /* ... */ }
+    ```
+
+- **Send**
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **Same**
+- **BorshDeserialize**
+  - ```rust
+    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
+    ```
 
 ### Struct `TransferExecutedEvent`
 
@@ -2995,45 +2995,63 @@ pub struct TransferExecutedEvent {
 
 ##### Trait Implementations
 
-- **IntoEither**
-- **Send**
-- **AbiExample**
+- **Any**
   - ```rust
-    fn example() -> T { /* ... */ }
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
     ```
 
-- **Discriminator**
-- **BorrowMut**
-  - ```rust
-    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
-    ```
-
-- **Freeze**
-- **UnwindSafe**
-- **Unpin**
 - **Sync**
-- **Same**
-- **BorshDeserialize**
-  - ```rust
-    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
 - **Into**
   - ```rust
     fn into(self: Self) -> U { /* ... */ }
     ```
     Calls `U::from(self)`.
 
-- **Any**
+- **AbiExample**
   - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    fn example() -> T { /* ... */ }
     ```
 
-- **Borrow**
+- **TryFrom**
   - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
     ```
 
+- **IntoEither**
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **BorrowMut**
+  - ```rust
+    fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
+- **Event**
+  - ```rust
+    fn data(self: &Self) -> Vec<u8> { /* ... */ }
+    ```
+
+- **BorshSerialize**
+  - ```rust
+    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
+- **Unpin**
+- **UnwindSafe**
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
+    ```
+
+- **Same**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -3051,38 +3069,20 @@ pub struct TransferExecutedEvent {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **Event**
-  - ```rust
-    fn data(self: &Self) -> Vec<u8> { /* ... */ }
-    ```
-
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
 - **RefUnwindSafe**
-- **From**
+- **Borrow**
   - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **BorshSerialize**
-  - ```rust
-    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
+    fn borrow(self: &Self) -> &T { /* ... */ }
     ```
 
+- **BorshDeserialize**
+  - ```rust
+    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
+- **Discriminator**
+- **Send**
+- **Freeze**
 ### Struct `DepositEvent`
 
 Event emitted when a deposit is made
@@ -3109,59 +3109,18 @@ pub struct DepositEvent {
 
 ##### Trait Implementations
 
-- **TryInto**
-  - ```rust
-    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
-    ```
-
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-- **Same**
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **Sync**
-- **Send**
-- **BorshDeserialize**
-  - ```rust
-    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
-    ```
-
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
-- **Event**
-  - ```rust
-    fn data(self: &Self) -> Vec<u8> { /* ... */ }
-    ```
-
-- **Discriminator**
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
+- **Unpin**
+- **UnwindSafe**
 - **BorrowMut**
   - ```rust
     fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
+    ```
+
+- **Freeze**
+- **RefUnwindSafe**
+- **VZip**
+  - ```rust
+    fn vzip(self: Self) -> V { /* ... */ }
     ```
 
 - **Into**
@@ -3170,11 +3129,42 @@ pub struct DepositEvent {
     ```
     Calls `U::from(self)`.
 
+- **Send**
+- **BorshDeserialize**
+  - ```rust
+    fn deserialize_reader<R: borsh::maybestd::io::Read>(reader: &mut R) -> ::core::result::Result<Self, borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
+- **Discriminator**
+- **Same**
+- **Sync**
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
 - **IntoEither**
-- **RefUnwindSafe**
-- **Freeze**
-- **Unpin**
-- **UnwindSafe**
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **BorshSerialize**
+  - ```rust
+    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
+    ```
+
+- **TryInto**
+  - ```rust
+    fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
+    ```
+
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -3192,9 +3182,19 @@ pub struct DepositEvent {
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
-- **BorshSerialize**
+- **Event**
   - ```rust
-    fn serialize<W: borsh::maybestd::io::Write>(self: &Self, writer: &mut W) -> ::core::result::Result<(), borsh::maybestd::io::Error> { /* ... */ }
+    fn data(self: &Self) -> Vec<u8> { /* ... */ }
+    ```
+
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
+- **AbiExample**
+  - ```rust
+    fn example() -> T { /* ... */ }
     ```
 
 ### Enum `CustomError`
@@ -3278,74 +3278,54 @@ Thrown when a transfer would leave the vault with insufficient balance for rent
 
 ##### Trait Implementations
 
+- **UnwindSafe**
+- **CloneToUninit**
+  - ```rust
+    unsafe fn clone_to_uninit(self: &Self, dest: *mut u8) { /* ... */ }
+    ```
+
 - **Freeze**
 - **BorrowMut**
   - ```rust
     fn borrow_mut(self: &mut Self) -> &mut T { /* ... */ }
     ```
 
-- **VZip**
-  - ```rust
-    fn vzip(self: Self) -> V { /* ... */ }
-    ```
-
-- **From**
-  - ```rust
-    fn from(t: T) -> T { /* ... */ }
-    ```
-    Returns the argument unchanged.
-
-  - ```rust
-    fn from(e: CustomError) -> u32 { /* ... */ }
-    ```
-
-  - ```rust
-    fn from(error_code: CustomError) -> anchor_lang::error::Error { /* ... */ }
-    ```
-
-- **Any**
-  - ```rust
-    fn type_id(self: &Self) -> TypeId { /* ... */ }
-    ```
-
-- **Copy**
-- **IntoEither**
+- **Same**
 - **Send**
+- **Display**
+  - ```rust
+    fn fmt(self: &Self, fmt: &mut std::fmt::Formatter<''_>) -> std::result::Result<(), std::fmt::Error> { /* ... */ }
+    ```
+
+- **RefUnwindSafe**
+- **Debug**
+  - ```rust
+    fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
+    ```
+
+- **Clone**
+  - ```rust
+    fn clone(self: &Self) -> CustomError { /* ... */ }
+    ```
+
+- **Sync**
+- **ToString**
+  - ```rust
+    fn to_string(self: &Self) -> String { /* ... */ }
+    ```
+
 - **Into**
   - ```rust
     fn into(self: Self) -> U { /* ... */ }
     ```
     Calls `U::from(self)`.
 
-- **ToString**
-  - ```rust
-    fn to_string(self: &Self) -> String { /* ... */ }
-    ```
-
 - **TryInto**
   - ```rust
     fn try_into(self: Self) -> Result<U, <U as TryFrom<T>>::Error> { /* ... */ }
     ```
 
-- **RefUnwindSafe**
-- **Same**
-- **AbiExample**
-  - ```rust
-    fn example() -> T { /* ... */ }
-    ```
-
-- **Sync**
-- **Unpin**
-- **Borrow**
-  - ```rust
-    fn borrow(self: &Self) -> &T { /* ... */ }
-    ```
-
-- **TryFrom**
-  - ```rust
-    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
-    ```
-
+- **IntoEither**
 - **Pointable**
   - ```rust
     unsafe fn init(init: <T as Pointable>::Init) -> usize { /* ... */ }
@@ -3363,6 +3343,37 @@ Thrown when a transfer would leave the vault with insufficient balance for rent
     unsafe fn drop(ptr: usize) { /* ... */ }
     ```
 
+- **From**
+  - ```rust
+    fn from(t: T) -> T { /* ... */ }
+    ```
+    Returns the argument unchanged.
+
+  - ```rust
+    fn from(e: CustomError) -> u32 { /* ... */ }
+    ```
+
+  - ```rust
+    fn from(error_code: CustomError) -> anchor_lang::error::Error { /* ... */ }
+    ```
+
+- **Copy**
+- **Unpin**
+- **Borrow**
+  - ```rust
+    fn borrow(self: &Self) -> &T { /* ... */ }
+    ```
+
+- **TryFrom**
+  - ```rust
+    fn try_from(value: U) -> Result<T, <T as TryFrom<U>>::Error> { /* ... */ }
+    ```
+
+- **Any**
+  - ```rust
+    fn type_id(self: &Self) -> TypeId { /* ... */ }
+    ```
+
 - **ToOwned**
   - ```rust
     fn to_owned(self: &Self) -> T { /* ... */ }
@@ -3372,27 +3383,16 @@ Thrown when a transfer would leave the vault with insufficient balance for rent
     fn clone_into(self: &Self, target: &mut T) { /* ... */ }
     ```
 
-- **Debug**
+- **VZip**
   - ```rust
-    fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<''_>) -> $crate::fmt::Result { /* ... */ }
+    fn vzip(self: Self) -> V { /* ... */ }
     ```
 
-- **Clone**
+- **AbiExample**
   - ```rust
-    fn clone(self: &Self) -> CustomError { /* ... */ }
+    fn example() -> T { /* ... */ }
     ```
 
-- **CloneToUninit**
-  - ```rust
-    unsafe fn clone_to_uninit(self: &Self, dest: *mut u8) { /* ... */ }
-    ```
-
-- **Display**
-  - ```rust
-    fn fmt(self: &Self, fmt: &mut std::fmt::Formatter<''_>) -> std::result::Result<(), std::fmt::Error> { /* ... */ }
-    ```
-
-- **UnwindSafe**
 ## Functions
 
 ### Function `check_id`
