@@ -89,7 +89,6 @@
     {
       "group": "How it Works",
       "pages": [
-        "how-it-works/relay-protocol",
         "how-it-works/the-reservoir-relayer",
         "how-it-works/contract-compatibility",
         "how-it-works/swapping",
@@ -147,7 +146,6 @@
         {
           "group": "Actions",
           "pages": [
-            "references/sdk/actions/getSolverCapacity",
             "references/sdk/actions/getQuote",
             "references/sdk/actions/execute"
           ]
@@ -184,27 +182,55 @@
       ]
     },
     {
-      "group": "Vaults",
+      "group": "Relay Protocol",
       "pages": [
-        "references/vaults/overview",
-        "references/vaults/architecture",
-        "references/vaults/security",
-        "references/vaults/backend",
+        "references/protocol/overview",
         {
-          "group": "Guides",
+          "group": "Depository",
           "pages": [
-            "references/vaults/guides/bridging",
-            "references/vaults/guides/interacting"
+            "references/protocol/depository/overview",
+            "references/protocol/depository/architecture",
+            "references/protocol/depository/security"
           ]
         },
         {
-          "group": "Contracts Reference",
+          "group": "Oracle",
           "pages": [
-            "references/vaults/contracts/RelayPoolFactory",
-            "references/vaults/contracts/RelayPool",
-            "references/vaults/contracts/RelayPoolNativeGateway",
-            "references/vaults/contracts/RelayBridgeFactory",
-            "references/vaults/contracts/RelayBridge"
+            "references/protocol/oracle/overview",
+            "references/protocol/oracle/architecture"
+          ]
+        },
+        {
+          "group": "Hub",
+          "pages": [
+            "references/protocol/hub/overview",
+            "references/protocol/hub/architecture"
+          ]
+        },
+        {
+          "group": "Vaults",
+          "pages": [
+            "references/protocol/vaults/overview",
+            "references/protocol/vaults/architecture",
+            "references/protocol/vaults/security",
+            "references/protocol/vaults/backend",
+            {
+              "group": "Guides",
+              "pages": [
+                "references/protocol/vaults/guides/bridging",
+                "references/protocol/vaults/guides/interacting"
+              ]
+            },
+            {
+              "group": "Contracts Reference",
+              "pages": [
+                "references/protocol/vaults/contracts/RelayPoolFactory",
+                "references/protocol/vaults/contracts/RelayPool",
+                "references/protocol/vaults/contracts/RelayPoolNativeGateway",
+                "references/protocol/vaults/contracts/RelayBridgeFactory",
+                "references/protocol/vaults/contracts/RelayBridge"
+              ]
+            }
           ]
         }
       ]
