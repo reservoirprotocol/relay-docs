@@ -1,4 +1,4 @@
-# Solana Relay Depository
+# API
 
 **Version:** 0.1.0
 
@@ -474,10 +474,10 @@ pub struct Initialize<''info> {
 
 | Name | Type | Documentation |
 |------|------|---------------|
-| `relay_depository` | `Account<''info, RelayDepository>` | The relay depository account to be initialized<br>This is a PDA derived from the RELAY_DEPOSITORY_SEED |
-| `vault` | `UncheckedAccount<''info>` | PDA that will hold SOL deposits<br>CHECK: This is a PDA derived from the VAULT_SEED |
-| `owner` | `Signer<''info>` | The owner account that pays for initialization<br>Must match the AUTHORIZED_PUBKEY |
-| `allocator` | `UncheckedAccount<''info>` | The allocator account that will be authorized to sign transfer requests<br>CHECK: Used as public key only |
+| `relay_depository` | `Account<''info, RelayDepository>` | The relay depository account to be initialized<br />This is a PDA derived from the RELAY_DEPOSITORY_SEED |
+| `vault` | `UncheckedAccount<''info>` | PDA that will hold SOL deposits<br />CHECK: This is a PDA derived from the VAULT_SEED |
+| `owner` | `Signer<''info>` | The owner account that pays for initialization<br />Must match the AUTHORIZED_PUBKEY |
+| `allocator` | `UncheckedAccount<''info>` | The allocator account that will be authorized to sign transfer requests<br />CHECK: Used as public key only |
 | `system_program` | `Program<''info, System>` |  |
 
 ### Struct `InitializeBumps`
@@ -581,8 +581,8 @@ pub struct DepositNative<''info> {
 |------|------|---------------|
 | `relay_depository` | `Account<''info, RelayDepository>` | The relay depository account |
 | `sender` | `Signer<''info>` | The sender of the deposit |
-| `depositor` | `UncheckedAccount<''info>` | The account credited for the deposit<br>CHECK: The account credited for the deposit |
-| `vault` | `UncheckedAccount<''info>` | The vault PDA that will receive the SOL<br>CHECK: The vault PDA that will receive the SOL |
+| `depositor` | `UncheckedAccount<''info>` | The account credited for the deposit<br />CHECK: The account credited for the deposit |
+| `vault` | `UncheckedAccount<''info>` | The vault PDA that will receive the SOL<br />CHECK: The vault PDA that will receive the SOL |
 | `system_program` | `Program<''info, System>` | The system program |
 
 ### Struct `DepositNativeBumps`
@@ -625,8 +625,8 @@ pub struct DepositToken<''info> {
 |------|------|---------------|
 | `relay_depository` | `Account<''info, RelayDepository>` | The relay depository account |
 | `sender` | `Signer<''info>` | The sender of the deposit |
-| `depositor` | `UncheckedAccount<''info>` | The account credited for the deposit<br>CHECK: The account credited for the deposit |
-| `vault` | `UncheckedAccount<''info>` | The vault PDA that will receive the tokens<br>CHECK: The vault PDA that will receive the tokens |
+| `depositor` | `UncheckedAccount<''info>` | The account credited for the deposit<br />CHECK: The account credited for the deposit |
+| `vault` | `UncheckedAccount<''info>` | The vault PDA that will receive the tokens<br />CHECK: The vault PDA that will receive the tokens |
 | `mint` | `InterfaceAccount<''info, anchor_spl::token_interface::Mint>` | The mint of the token being deposited |
 | `sender_token_account` | `InterfaceAccount<''info, anchor_spl::token_interface::TokenAccount>` | The sender's token account |
 | `vault_token_account` | `UncheckedAccount<''info>` | CHECK: The vault's token account |
@@ -677,15 +677,15 @@ pub struct ExecuteTransfer<''info> {
 
 | Name | Type | Documentation |
 |------|------|---------------|
-| `relay_depository` | `Account<''info, RelayDepository>` | The relay depository account<br>CHECK: The relay depository account |
-| `executor` | `Signer<''info>` | The executor of the transfer<br>CHECK: The executor of the transfer |
-| `recipient` | `UncheckedAccount<''info>` | The recipient of the transfer<br>CHECK: The recipient of the transfer |
-| `vault` | `UncheckedAccount<''info>` | The vault PDA that will receive the tokens<br>CHECK: The vault PDA that will receive the tokens |
+| `relay_depository` | `Account<''info, RelayDepository>` | The relay depository account<br />CHECK: The relay depository account |
+| `executor` | `Signer<''info>` | The executor of the transfer<br />CHECK: The executor of the transfer |
+| `recipient` | `UncheckedAccount<''info>` | The recipient of the transfer<br />CHECK: The recipient of the transfer |
+| `vault` | `UncheckedAccount<''info>` | The vault PDA that will receive the tokens<br />CHECK: The vault PDA that will receive the tokens |
 | `mint` | `Option<InterfaceAccount<''info, anchor_spl::token_interface::Mint>>` | The mint of the token being transferred |
 | `recipient_token_account` | `Option<InterfaceAccount<''info, anchor_spl::token_interface::TokenAccount>>` | The recipient's token account |
 | `vault_token_account` | `Option<InterfaceAccount<''info, anchor_spl::token_interface::TokenAccount>>` | The vault's token account |
-| `used_request` | `Account<''info, UsedRequest>` | The account that tracks whether a transfer request has been used<br> <br>This account is created for each transfer request to prevent replay attacks. |
-| `ix_sysvar` | `AccountInfo<''info>` | The instruction sysvar for ed25519 verification<br>CHECK: The instruction sysvar for ed25519 verification |
+| `used_request` | `Account<''info, UsedRequest>` | The account that tracks whether a transfer request has been used<br /> <br />This account is created for each transfer request to prevent replay attacks. |
+| `ix_sysvar` | `AccountInfo<''info>` | The instruction sysvar for ed25519 verification<br />CHECK: The instruction sysvar for ed25519 verification |
 | `token_program` | `Interface<''info, anchor_spl::token_interface::TokenInterface>` | The token program |
 | `associated_token_program` | `Program<''info, anchor_spl::associated_token::AssociatedToken>` | The associated token program |
 | `system_program` | `Program<''info, System>` | The system program |
