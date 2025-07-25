@@ -68,7 +68,7 @@
           "pages": [
             "guides/smart-accounts",
             "guides/erc-4337",
-            "guides/eip-7702"        
+            "guides/eip-7702"
           ]
         },
         {
@@ -163,7 +163,8 @@
             "references/relay-kit/hooks/useRelayChains",
             "references/relay-kit/hooks/useRequests",
             "references/relay-kit/hooks/useTokenList",
-            "references/relay-kit/hooks/useTokenPrice"
+            "references/relay-kit/hooks/useTokenPrice",
+            "references/relay-kit/hooks/useExecutionStatus"
           ]
         },
         {
