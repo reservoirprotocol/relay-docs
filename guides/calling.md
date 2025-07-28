@@ -402,7 +402,7 @@ quote_request = {
     'destinationChainId': 8453,
     'originCurrency': 'usdc',
     'destinationCurrency': 'usdc',
-    'amount': '0',  # No ETH value for ERC20-only calls
+    'amount': '1000000000',  # Amount required for call (1000 USDC with 6 decimals)
     'tradeType': 'EXACT_OUTPUT',
     'txs': [
         {
@@ -428,9 +428,6 @@ quote_request = {
 
 **Problem**: Transaction reverts with "ERC20: insufficient allowance"\
 **Solution**: Check that the approval amount is sufficient for your contract call
-
-**Problem**: "amount parameter doesn't match txs values"
-**Solution**: For ERC20-only calls, set `amount: "0"` since there's no ETH value
 
 **Problem**: Approval transaction succeeds but contract call fails
 **Solution**: Verify the contract address in the approval matches the contract you're calling
