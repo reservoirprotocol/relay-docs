@@ -63,20 +63,20 @@ const executeCallData = encodeFunctionData({
 // Step 4: Construct and send quote request
 const requestData = {
   user: eoa7702.address,
-  originChainId: 10, // Optimism
-  destinationChainId: 42161, // Arbitrum
+  originChainId: 10, 
+  destinationChainId: 42161,
   originCurrency: "0x0000000000000000000000000000000000000000",
   destinationCurrency: "0x0000000000000000000000000000000000000000",
   recipient: eoa7702.address,
   tradeType: "EXACT_OUTPUT",
   amount: "1000000000000000",
   useExternalLiquidity: false,
+  authorizationList: [authorizationHash], // You can pass in multiple authorizationHash in the authorizationList array
   txs: [
     {
       to: "0xabc...",
       value: "0",
       data: executeCallData,
-      authorizationList: [authorizationHash],
     },
   ],
 };
