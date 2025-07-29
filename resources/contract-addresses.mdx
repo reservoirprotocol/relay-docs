@@ -1,14 +1,11 @@
 ---
-title: "Contract Addresses"
-description: "
-"
+title: "Solver and Contract Addresses"
+description: " "
 ---
 
 import { Contracts } from "/snippets/Contracts.mdx";
 
-Relay's contract addresses can be found below along with each chain. This is current as of August
-27th, 2024. For the most up to date list, please check our [Mainnet Chains API](https://api.relay.link/chains) or [Testnet Chains API](https://api.testnets.relay.link/chains).
-We are currently in the process of getting all contracts verified and audited.
+Relay's solver and contract addresses can be found below along with each chain
 
 <Info>
   Please note that not all deployed contracts have the same address across all
@@ -16,12 +13,19 @@ We are currently in the process of getting all contracts verified and audited.
   address for the chain you are using.
 </Info>
 
-## Supported Chains
+### Solver Addresses
 
-### Mainnets
+| Chain Type | Solver Address                               |
+| ---------- | -------------------------------------------- |
+| Bitcoin    | bc1qq2mvrp4g3ugd424dw4xv53rgsf8szkrv853jrc   |
+| EVM        | 0xf70da97812cb96acdf810712aa562db8dfa3dbef   |
+| SVM        | F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe |
+| Tron       | TYVWGh8XkmU49Hi9PkGAZXiiJPB3J5zJZy           |
+
+### Mainnet Contracts
 
 <Contracts id="mainnetContracts" env="mainnets" />
 
-### Testnets
+### Testnet Contracts
 
 <Contracts id="testnetContracts" env="testnets" />

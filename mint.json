@@ -40,6 +40,10 @@
     {
       "name": "UI Kit",
       "url": "references/relay-kit"
+    },
+    {
+      "name": "Relay Protocol",
+      "url": "references/protocol"
     }
   ],
   "navigation": [
@@ -61,6 +65,7 @@
         "guides/bridging",
         "guides/swapping",
         "guides/calling",
+        "guides/transaction-indexing",
         "guides/solana",
         "guides/testnet",
         {
@@ -68,7 +73,7 @@
           "pages": [
             "guides/smart-accounts",
             "guides/erc-4337",
-            "guides/eip-7702"        
+            "guides/eip-7702"
           ]
         },
         {
@@ -84,7 +89,6 @@
     {
       "group": "How it Works",
       "pages": [
-        "how-it-works/relay-protocol",
         "how-it-works/the-reservoir-relayer",
         "how-it-works/contract-compatibility",
         "how-it-works/swapping",
@@ -142,7 +146,6 @@
         {
           "group": "Actions",
           "pages": [
-            "references/sdk/actions/getSolverCapacity",
             "references/sdk/actions/getQuote",
             "references/sdk/actions/execute"
           ]
@@ -163,7 +166,8 @@
             "references/relay-kit/hooks/useRelayChains",
             "references/relay-kit/hooks/useRequests",
             "references/relay-kit/hooks/useTokenList",
-            "references/relay-kit/hooks/useTokenPrice"
+            "references/relay-kit/hooks/useTokenPrice",
+            "references/relay-kit/hooks/useExecutionStatus"
           ]
         },
         {
@@ -174,6 +178,71 @@
             "references/relay-kit/ui/swap-widget",
             "references/relay-kit/ui/theming",
             "references/relay-kit/ui/troubleshooting"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Relay Protocol",
+      "pages": [
+        "references/protocol/overview",
+        {
+          "group": "Depository",
+          "pages": [
+            "references/protocol/depository/overview",
+            "references/protocol/depository/architecture",
+            "references/protocol/depository/security",
+            {
+              "group": "Guides",
+              "pages": ["references/protocol/depository/guides/integrating"]
+            },
+            {
+              "group": "Contracts Reference",
+              "pages": [
+                "references/protocol/depository/contracts/Solana-Relay-Depository",
+                "references/protocol/depository/contracts/Evm-Relay-Depository"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Oracle",
+          "pages": [
+            "references/protocol/oracle/overview",
+            "references/protocol/oracle/architecture"
+          ]
+        },
+        {
+          "group": "Hub",
+          "pages": [
+            "references/protocol/hub/overview",
+            "references/protocol/hub/architecture"
+          ]
+        },
+        {
+          "group": "Vaults",
+          "pages": [
+            "references/protocol/vaults/overview",
+            "references/protocol/vaults/architecture",
+            "references/protocol/vaults/security",
+            "references/protocol/vaults/backend",
+            {
+              "group": "Guides",
+              "pages": [
+                "references/protocol/vaults/guides/bridging",
+                "references/protocol/vaults/guides/interacting"
+              ]
+            },
+            {
+              "group": "Contracts Reference",
+              "pages": [
+                "references/protocol/vaults/contracts/RelayPoolFactory",
+                "references/protocol/vaults/contracts/RelayPool",
+                "references/protocol/vaults/contracts/RelayPoolNativeGateway",
+                "references/protocol/vaults/contracts/RelayBridgeFactory",
+                "references/protocol/vaults/contracts/RelayBridge"
+              ]
+            }
           ]
         }
       ]

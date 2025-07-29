@@ -1,0 +1,30 @@
+---
+title: getAppFees
+description: Retrieve app fee balances for a specific wallet
+---
+
+[What are app fees?](/how-it-works/fees#what-are-app-fees)
+
+### Parameters
+
+| Property   | Description                                 | Required |
+|------------|---------------------------------------------|----------|
+| **wallet** | The wallet address to fetch app fee balances for | ✅       |
+
+### Example
+
+```typescript
+import { getClient } from "@reservoir0x/relay-sdk";
+
+const wallet = "0x..."; // Replace with your wallet address
+
+const balances = await getClient().actions.getAppFees({
+  wallet,
+});
+
+```
+
+
+
+
+
