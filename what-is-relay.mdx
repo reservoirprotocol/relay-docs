@@ -21,7 +21,7 @@ Today Relay is powered by the [Reservoir Relayer](/how-it-works/the-reservoir-re
 
 In traditional message-based bridges (LayerZero, Axelar, Wormhole, etc), there needs to be consensus amongst a group of actors that something happened on Chain A, before it can be acted upon on Chain B. This is because there are often shared liquidity pools on either side, and so you need to be certain that the action on Chain A was completed. For safety, this usually takes at least a couple of minutes.
 
-By contrast, when using a relayer model (Relay, Across, etc), a single relayer executes the order on Chain B using their own funds. This means they don’t need to wait for the action on Chain A to be fully confirmed, or to get consensus. When a user submits and order, the relayer fills as soon as possible, at which point the users desired intent is complete. This can happen in as little as a few seconds for low cost actions, like NFT mints and gas sponsorship.
+By contrast, when using a relayer model (Relay, Across, etc), a single relayer executes the order on Chain B using their own funds. This means they don’t need to wait for the action on Chain A to be fully confirmed, or to get consensus. When a user submits an order, the relayer fills as soon as possible, at which point the user's desired intent is complete. This can happen in as little as a few seconds for low cost actions, like NFT mints and gas sponsorship.
 
 ## How is it so cheap?
 
@@ -31,7 +31,7 @@ When bridging or swapping, there are typically three cost components:
 - **Order validation**: Ensuring that the user’s order was fulfilled correctly
 - **Fee collection**: Paying fees to actors such as a protocol, wallet or relayer
 
-In most systems, order validation and fee collection happen on the same chain as asset transfer, which is usually a high-cost chain like Ethereum. In Relay, order validation and fee collection happen on a cheaper settlment chain, while asset transfers are reduced to _direct_ transfers between the user and the relayer. This avoids the gas required when routing assets through onchain protocols. This reduces the cost to the absolute minimum possible. For example, for a crosschain bridge, the gas cost to use Relay is ~42,000 gas (origin & destination), while Across, the _cheapest_ alternative, is roughly ~250,000 gas.
+In most systems, order validation and fee collection happen on the same chain as asset transfer, which is usually a high-cost chain like Ethereum. In Relay, order validation and fee collection happen on a cheaper settlment chain, while asset transfers are reduced to _direct_ transfers between the user and the relayer. This avoids the gas required when routing assets through onchain protocols. This reduces the cost to the absolute minimum possible. For example, for a crosschain bridge, the gas cost to use Relay is ~42,000 gas (origin & destination), while with Across, the _cheapest_ alternative, it is roughly ~250,000 gas.
 
 ## What chains are supported?
 
