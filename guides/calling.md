@@ -270,7 +270,7 @@ const quoteRequest = {
   destinationChainId: 8453,
   originCurrency: 'usdc',
   destinationCurrency: 'usdc', 
-  amount: '1000000000', // 1000 USDC
+  amount: '1000000000', // Amount required for call (1000 USDC with 6 decimals)
   tradeType: 'EXACT_OUTPUT',
   txs: [
     {
