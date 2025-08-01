@@ -106,6 +106,7 @@
         "resources/supported-routes",
         "resources/contract-addresses",
         "resources/bounties",
+        "resources/ofac-sanctions",
         "resources/brand-assets"
       ]
     },
