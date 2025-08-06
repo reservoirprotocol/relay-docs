@@ -122,6 +122,7 @@
         "references/api/get-token-price",
         "references/api/get-currencies-v2",
         "references/api/get-quote",
+        "references/api/execute",
         "references/api/swap-multi-input",
         "references/api/transactions-index",
         "references/api/transactions-single",
