@@ -1,9 +1,9 @@
 ---
-title: 'Hyperliquid Support'
-description: 'How to deposit and withdraw from Hyperliquid to any Relay Chain'
+title: "Hyperliquid Support"
+description: "How to deposit and withdraw from Hyperliquid to any Relay Chain"
 ---
 
-Relay supports depositing & withdrawing to Hyperliquid perpsUSDC from any supported chain. To try it today, use the [Relay App](https://relay.link/). 
+Relay supports depositing & withdrawing to Hyperliquid (Hypercore) perpsUSDC from any supported chain. To try it today, use the [Relay App](https://relay.link/bridge/hyperliquid). Relay also has complete support for HyperEVM, which can be accessed using our main quote flow with `chainId=999`. This document details how to deposit and withdraw from Hyperliquid within your app.
 
 # API Access
 
@@ -11,18 +11,19 @@ Hyperliquid can be accessed using the standard Relay API flow, with the followin
 
 ## Hyperliquid Specific API Parameters
 
-| **Action** | **Parameter** | **Input** | **Description** |
-| --- | --- | --- | --- |
-| Deposit to Hyperliquid | toChainId |  |  |
-|  | recipient |  |  |
-|  | … |  |  |
-| Withdrawals | useDepositAddress | true |  |
+| **Action**                   | **Parameter**           | **Input** | **Description**      |
+| ---------------------------- | ----------------------- | --------- | -------------------- |
+| Deposit to Hyperliquid       | toChainId               | 1337      | Hyperliquid Chain Id |
+|                              | recipient               |           | Hyperliquid Address  |
+| Withdrawals from Hyperliquid | useDepositAddress\*\*\* | true      |                      |
+|                              | fromChainId             | 1337      | Hyperliquid Chain Id |
 
-_*** for withdrawals `useDepositAddress:true` is a required param do to the current structure of hypercore._
+These params define the necessary parameters for Hyperliquid interactions. All other required API parameters are still necessary.
+_\*\*\* for withdrawals `useDepositAddress:true` is a required param do to the current structure of hypercore._
 
 ## Interacting with Hyperliquid to Initiate Withdrawals
 
-In order to facilitate withdrawals from hyperliquid in your application, you need to query users balances, and submit hyperliquid transactions. 
+In order to facilitate withdrawals from hyperliquid in your application, you need to query users balances, and submit hyperliquid transactions.
 
 ### Getting Hyperliquid Balances
 
@@ -67,6 +68,7 @@ Once you verify that your address has a usdc perps balance you must sign a messa
             }
 }
 ```
+
 Let’s break down the object above:
 
 - `domain` - static except for the `chainId`.
@@ -76,15 +78,15 @@ Let’s break down the object above:
 - `signatureChainId` is the hex representation of the aforementioned active chain id.
 
 ```jsx
-const items = steps[0]?.items
-const destination = items[0]?.data?.action?.parameters?.destination
+const items = steps[0]?.items;
+const destination = items[0]?.data?.action?.parameters?.destination;
 ```
 
 The amount can also be retrieved in a similar fashion:
 
 ```jsx
-const items = steps[0]?.items
-const amount = items[0]?.data?.action?.parameters?.amount
+const items = steps[0]?.items;
+const amount = items[0]?.data?.action?.parameters?.amount;
 ```
 
 Finally we generate a time, this is used to avoid collisions in Hyperliquid, which recommends using the current UTC millisecond time. The data must then be signed and submitted. The signature should be compliant with eip712:
@@ -129,6 +131,6 @@ const res = await axios.post('https://api.hyperliquid.xyz/exchange', {
  })
 ```
 
-You must parse the signature into parts (r, s, v). Also make sure that the v is a number and not a BigInt/BigNumber. Use the same data you used when signing, it should match exactly the data you signed. The successful response should be a 200 and the data.status should be an `“ok”`. 
+You must parse the signature into parts (r, s, v). Also make sure that the v is a number and not a BigInt/BigNumber. Use the same data you used when signing, it should match exactly the data you signed. The successful response should be a 200 and the data.status should be an `“ok”`.
 
 To see how an [example](https://github.com/reservoirprotocol/relay-kit/blob/main/packages/sdk/src/utils/hyperliquid.ts) you can have a look at our publicly available SDK.
