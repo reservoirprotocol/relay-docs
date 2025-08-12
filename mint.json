@@ -81,7 +81,8 @@
           "pages": [
             "guides/just-in-time-gas",
             "guides/deep-linking",
-            "guides/deposit-address"
+            "guides/deposit-address",
+            "guides/hyperliquid-support"
           ]
         }
       ]
