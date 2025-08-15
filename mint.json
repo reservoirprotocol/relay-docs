@@ -8,12 +8,12 @@
   "favicon": "/favicon.png",
 
   "colors": {
-    "primary": "#9e7aff",
-    "light": "#b194ff",
-    "dark": "#7e61cc",
+    "primary": "#4615C8",
+    "light": "#A7AAFF",
+    "dark": "#5A45DF",
     "anchors": {
-      "from": "#b194ff",
-      "to": "#7e61cc"
+      "from": "#A7AAFF",
+      "to": "#5A45DF"
     }
   },
 
