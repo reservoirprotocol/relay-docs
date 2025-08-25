@@ -6,11 +6,10 @@
     "light": "/logo/relay-black.svg"
   },
   "favicon": "/favicon.png",
-
   "colors": {
     "primary": "#4615C8",
     "light": "#A7AAFF",
-    "dark": "#5A45DF",
+    "dark": "#4615C8",
     "anchors": {
       "from": "#A7AAFF",
       "to": "#5A45DF"
@@ -79,7 +78,6 @@
         {
           "group": "Advanced",
           "pages": [
-            "guides/just-in-time-gas",
             "guides/deep-linking",
             "guides/deposit-address",
             "guides/hyperliquid-support"

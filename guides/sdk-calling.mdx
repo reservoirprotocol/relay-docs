@@ -35,7 +35,7 @@ You can pass that data into the [getQuote](/references/sdk/actions/getQuote) SDK
 <CodeGroup>
 
 ```typescript sdk
-import { getClient } from '@reservoir0x/relay-sdk'
+import { getClient } from '@relayprotocol/relay-sdk'
 import { useWalletClient } from 'wagmi'
 
 const { data: wallet } = useWalletClient()
@@ -61,7 +61,7 @@ const quote = await getClient()?.actions.getQuote({
 
 
 ```typescript sdk simulateContract
-import { getClient } from '@reservoir0x/relay-sdk'
+import { getClient } from '@relayprotocol/relay-sdk'
 import { useWalletClient } from 'wagmi'
 
 const { data: wallet } = useWalletClient()
@@ -96,8 +96,8 @@ const quote = await getClient()?.actions.getQuote({
 
 
 ```typescript hooks
-import { useRelayClient } from '@reservoir0x/relay-kit-ui'
-import { useQuote } from '@reservoir0x/relay-kit-hooks'
+import { useRelayClient } from '@relayprotocol/relay-kit-ui'
+import { useQuote } from '@relayprotocol/relay-kit-hooks'
 import { useWalletClient } from 'wagmi'
 
 const { data: wallet } = useWalletClient()
@@ -127,8 +127,8 @@ const {
 
 
 ```typescript hooks simulateContract
-import { useRelayClient } from '@reservoir0x/relay-kit-ui'
-import { useQuote } from '@reservoir0x/relay-kit-hooks'
+import { useRelayClient } from '@relayprotocol/relay-kit-ui'
+import { useQuote } from '@relayprotocol/relay-kit-hooks'
 import { useWalletClient } from 'wagmi'
 
 const { data: wallet } = useWalletClient()
@@ -179,7 +179,7 @@ After getting the quote, all that's left is to execute the quote and render the 
 <CodeGroup>
 
 ```typescript sdk
-import { getClient } from '@reservoir0x/relay-sdk'
+import { getClient } from '@relayprotocol/relay-sdk'
 import { useWalletClient } from 'wagmi'
 
 const { data: wallet } = useWalletClient()
@@ -199,7 +199,7 @@ await getClient()?.actions.execute({
 
 
 ```typescript hooks
-import { getClient } from '@reservoir0x/relay-sdk'
+import { getClient } from '@relayprotocol/relay-sdk'
 import { useWalletClient } from 'wagmi'
 
 const { data: wallet } = useWalletClient()
