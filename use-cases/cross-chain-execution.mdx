@@ -34,7 +34,7 @@ To get started make sure that you install and configure the [Relay SDK](/referen
 To use cross-chain execution with the Reservoir Aggregator, i.e. to mint, buy or sell NFTs aggregated by Reservoir, simply use the Reservoir SDK to trigger cross-chain execution with the appropriate method. When using the Reservoir SDK to trigger a cross-chain purchase all that's required is additionally passing a `currencyChainId` to the buyToken method. This assumes you know which token you would like to buy or mint. You can leverage the Reservoir API to look at aggregated collection liquidity, or trending mints. Below is an example of what that would look like to buy a token from secondary:
 
 ````typescript Cross-chain Example
-import { getClient, Execute } from "@reservoir0x/reservoir-sdk";
+import { getClient, Execute } from "@relayprotocol/reservoir-sdk";
 import { createWalletClient, http } from 'viem'
 
 ...
