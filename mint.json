@@ -205,7 +205,8 @@
                 "references/protocol/depository/contracts/Solana-Relay-Depository",
                 "references/protocol/depository/contracts/Evm-Relay-Depository"
               ]
-            }
+            },
+            "references/protocol/depository/addresses"
           ]
         },
         {
