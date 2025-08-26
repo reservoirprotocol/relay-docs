@@ -3,57 +3,83 @@ title: What is Relay?
 description: "The fastest and cheapest way to bridge & transact across chains"
 ---
 
-Relay is a multichain payments protocol that enables instant, low-cost bridging, swapping, and cross-chain execution. It works using Relayers who execute cross-chain transactions in exchange for a small fee. Relay is designed to minimize gas costs and execution latency, making it ideal for price-sensitive applications, such as payments, bridging, nft minting and gas abstraction.
+Relay is the instant payment network making transacting across chains as fast, cheap, and simple as online payments. We're pioneering "multichain payments" — a unified system for moving value anywhere onchain with no friction, no chain switching, and no technical guesswork.
 
-It features the following key properties:
+Since launching in 2024, Relay has served **5M+ users**, processed **50M+ transactions**, and moved **$6B+ in volume** across **75+ networks**. On Ethereum alone, we route an average of 3 transactions every block, representing nearly 0.7% of all network activity.
 
-- **Fast**: Relayers can fill orders optimistically, even before payment is confirmed. Small payments can confirm in seconds.
-- **Cheap**: As much logic as possible is performed off of expensive chains to reduce costs.
-- **Lightweight**: Can operate on any chain with just a single relayer
+---
 
-## How does it work?
+## The Complete Stack
 
-Relay is powered by Relayers. When a user wishes to bridge, they receive a quote from the Relay API. When the quote is accepted, the user deposits into the [Relay Depository Contracts](/references/protocol/depository/overview), either by submitting a tx or signing a gasless permission. The user is then filled on the destination chain by a Relayer. At this point the users order has been successfully completed. The last step of the Relay involves the Relayer claiming deposited funds, mediated by the [Relay Protocol](/references/protocol/).
+Built as a full-stack solution for every layer of the multichain payments experience:
 
-Today Relay is powered by the [Reservoir Relayer](/how-it-works/the-reservoir-relayer). With a live deposit flow in production, Users no longer need to trust Relayers in our system and we are currently finalizing how additional Relayers may be added.
+### 🏪 Relay App
 
-## How is it so fast?
+**For everyone who wants to swap tokens across chains**
 
-In traditional message-based bridges (LayerZero, Axelar, Wormhole, etc), there needs to be consensus amongst a group of actors that something happened on Chain A, before it can be acted upon on Chain B. This is because there are often shared liquidity pools on either side, and so you need to be certain that the action on Chain A was completed. For safety, this usually takes at least a couple of minutes.
+The fastest way to go from any token to any token across chains. Swap ETH on Ethereum for SOL on Solana in one transaction — built on the same infrastructure that powers enterprise customers.
 
-By contrast, when using a relayer model (Relay, Across, etc), a single relayer executes the order on Chain B using their own funds. This means they don’t need to wait for the action on Chain A to be fully confirmed, or to get consensus. When a user submits an order, the relayer fills as soon as possible, at which point the user's desired intent is complete. This can happen in as little as a few seconds for low cost actions, like NFT mints and gas sponsorship.
+[Try the App](https://relay.link/)
 
-## How is it so cheap?
+### ⚡ Relay API
 
-When bridging or swapping, there are typically three cost components:
+**For developers building multichain experiences**
 
-- **Asset transfer**: Moving assets from one wallet to another
-- **Order validation**: Ensuring that the user’s order was fulfilled correctly
-- **Fee collection**: Paying fees to actors such as a protocol, wallet or relayer
+One integration, 75+ chains, zero complexity. Abstract the hardest parts of multichain development:
 
-In most systems, order validation and fee collection happen on the same chain as asset transfer, which is usually a high-cost chain like Ethereum. In Relay, order validation and fee collection happen on a cheaper settlment chain, while asset transfers are reduced to _direct_ transfers between the user and the relayer. This avoids the gas required when routing assets through onchain protocols. This reduces the cost to the absolute minimum possible. For example, for a crosschain bridge, the gas cost to use Relay is ~42,000 gas (origin & destination), while with Across, the _cheapest_ alternative, it is roughly ~250,000 gas.
+- **Bridge instantly** between chains with predictable fees
+- **Swap seamlessly** using meta-aggregation across all major DEXs
+- **Deliver payments-grade UX** with gas sponsorship, guaranteed rates, and SLAs
 
-## What chains are supported?
+Whether you're building wallets, marketplaces, or consumer apps, Relay makes crosschain payments fast, reliable, and invisible.
 
-In many systems, expanding to a new chain requires deploying contracts, getting consensus amongst a network of actors, or deploying liquidity pools. With Relay, you just need a single relayer who is willing to operate on a chain, and it’s permissionless for them to get started. This is critical in a world with an abundance of chains. If you are interested in having your chain supported, reach out!
+[View Documentation](references/api/overview)
+
+### 🌐 Relay Protocol
+
+**The network powering it all**
+
+The open system connecting users to relayers who execute onchain actions with maximum capital efficiency. Designed for low gas costs, rapid chain expansion, and enterprise-grade reliability.
+
+[Learn More](/references/protocol/overview)
+
+---
+
+## Payments-Grade Reliability
+
+Unlike traditional bridges, Relay delivers the reliability users expect from modern payments:
+
+- **99.9% uptime** across 75+ networks
+- **Fast execution** instead of multi-minute wait times
+- **Automatic redundancy** systems ensuring transactions complete
+- **Clear completion signals** for apps and users
 
 ## Use Cases
 
-Learn more about the powerful use cases that can be built on Relay:
+Relay's flexible architecture supports diverse applications:
 
-<CardGroup cols={2}>
-  <Card
-    title="Instant Bridging"
-    icon="bridge"
-    href="https://docs.relay.link/use-cases/instant-bridging"
-  >
-    Get your docs set up locally for easy development
-  </Card>
-  <Card
-    title="Cross-chain Execution"
-    icon="route"
-    href="https://docs.relay.link/use-cases/cross-chain-execution"
-  >
-    Preview your changes before you push to make sure they're perfect
-  </Card>
-</CardGroup>
+- [**Instant Bridging**](/use-cases/instant-bridging) — Move assets between chains in seconds
+- [**Cross-Chain Execution**](/use-cases/cross-chain-execution) — Trade any token for any token across networks
+- [**Chain Abstraction**](/use-cases/chain-abstraction) — Let users interact with apps without thinking about chains
+
+---
+
+## Trusted by Leading Teams
+
+**Chain Expansion**: Alchemy, Conduit, and Caldera rely on Relay to provide payment rails to every rollup out of the box.
+
+**Chain Abstraction**: OpenSea powers crosschain mints through Relay so collectors never worry about which chain they're on. Phantom collapses complex swaps into seamless flows.
+
+**Multichain Infrastructure**: Apps like OneBalance route execution through Relay, letting users access opportunities across chains as easily as checking their balance.
+
+---
+
+## Ready to Experience Multichain Payments?
+
+**For Users**: [Try the Relay App](https://relay.link/) to swap any token across any chain instantly.
+
+**For Teams & Developers**: Check out our [Guides](/guides/bridging) to add multichain payments to your app.
+
+---
+
+*Contact us about enterprise features including dedicated support, custom SLAs, and priority routing.*
