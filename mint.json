@@ -84,7 +84,8 @@
           "pages": [
             "guides/deep-linking",
             "guides/deposit-address",
-            "guides/hyperliquid-support"
+            "guides/hyperliquid-support",
+            "guides/websockets"
           ]
         }
       ]
