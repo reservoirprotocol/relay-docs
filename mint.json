@@ -121,15 +121,22 @@
         "references/api/step-execution",
         "references/api/handling-errors",
         "references/api/get-chains",
+        "references/api/get-quote",
         "references/api/get-intents-status-v2",
         "references/api/get-requests",
-        "references/api/get-token-price",
-        "references/api/get-currencies-v2",
-        "references/api/get-quote",
-        "references/api/execute",
-        "references/api/swap-multi-input",
-        "references/api/transactions-index",
-        "references/api/transactions-single",
+        {
+          "group": "Utilities",
+          "pages": [
+            "references/api/get-currencies-v2",
+            "references/api/get-token-price",
+            "references/api/transactions-index",
+            "references/api/transactions-single"
+          ]
+        },
+        {
+          "group": "Advanced",
+          "pages": ["references/api/execute", "references/api/swap-multi-input"]
+        },
         {
           "group": "Deprecated",
           "pages": [
