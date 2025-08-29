@@ -40,3 +40,9 @@
   }
 
 }
+#\/references\/api\/core,
+#\/references\/api\/utilities,
+#\/references\/api\/advanced {
+  pointer-events: none;
+  font-weight: 700;
+}
